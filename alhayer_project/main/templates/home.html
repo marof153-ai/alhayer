@@ -1,99 +1,125 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alhayer | الرقي والبساطة</title>
+    <title>الهير الشرقية | حياة خضراء</title>
     <style>
-        /* تعريف الألوان الهادئة */
         :root {
-            --bg-color: #f4f7f6; /* رمادي فاتح مائل للأزرق */
-            --primary-color: #2c3e50; /* كحلي غامق وقور */
-            --accent-color: #8e9eab; /* رمادي لؤلؤي */
-            --white: #ffffff;
-            --text-color: #4a4a4a;
+            --logo-green: #76b82a; /* الأخضر من اللوجو */
+            --logo-red: #e30613;   /* الأحمر من اللوجو */
+            --dark-green: #2d4d11;
+            --bg-light: #fdfdfd;
         }
 
-        /* تنسيق عام للجسم */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0; background-color: var(--bg-light);
+            color: #333; overflow-x: hidden;
         }
 
-        /* حاوية المحتوى الرئيسية */
-        .container {
-            background-color: var(--white);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* ظل ناعم جداً */
-            max-width: 600px;
-            width: 90%;
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        /* العنوان الرئيسي */
-        h1 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-        }
-
-        /* النص الفرعي */
-        p {
-            font-size: 1.1rem;
-            color: var(--accent-color);
-            margin-bottom: 2rem;
-        }
-
-        /* الأزرار (لوحة التحكم) */
-        .btn {
-            display: inline-block;
-            text-decoration: none;
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.3);
-            background-color: #34495e;
-        }
-
-        /* لمسة جمالية في الخلفية */
-        .circle-bg {
-            position: absolute;
+        /* خلفية فنية مستوحاة من فكرة "حياة خضراء" */
+        .bg-pattern {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 10% 10%, rgba(118, 184, 42, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 90%, rgba(227, 6, 19, 0.03) 0%, transparent 50%);
             z-index: -1;
-            background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%);
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.5;
+        }
+
+        header {
+            background: white; padding: 15px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--logo-green);
+        }
+
+        .hero {
+            padding: 80px 20px; text-align: center;
+            background: linear-gradient(135deg, white 0%, #f0f7e9 100%);
+        }
+
+        .hero h1 {
+            color: var(--dark-green); font-size: 3rem; margin: 0;
+        }
+
+        .hero span {
+            color: var(--logo-red); font-size: 1.5rem; display: block; font-weight: 300;
+        }
+
+        .card-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; padding: 50px 10%;
+        }
+
+        .news-card {
+            background: white; padding: 30px; border-radius: 15px;
+            border-right: 8px solid var(--logo-green);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+            transition: 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-right-color: var(--logo-red);
+        }
+
+        .btn-main {
+            background: var(--logo-green); color: white;
+            padding: 12px 35px; border-radius: 25px;
+            text-decoration: none; font-weight: bold;
+            display: inline-block; margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- دوائر جمالية في الخلفية -->
-    <div class="circle-bg" style="width: 300px; height: 300px; top: -100px; right: -100px;"></div>
-    <div class="circle-bg" style="width: 200px; height: 200px; bottom: -50px; left: -50px;"></div>
 
-    <div class="container">
-        <h1>Alhayer</h1>
-        <p>مرحباً بكم في منصة مشروع الهير. نحن نبني مستقبلاً يجمع بين الأصالة والحداثة الرقمية.</p>
+<div class="bg-pattern"></div>
 
-        <a href="/admin" class="btn">دخول لوحة الإدارة</a>
+<header>
+    <img src="{% static 'images/logo1.png' %}" alt="الهير الشرقية" style="height: 70px; width: auto;">
+
+    <nav>
+        <a href="/admin" style="color: var(--dark-green); text-decoration: none; font-weight: 600;">دخول الإدارة</a>
+    </nav>
+</header>
+
+<div class="hero">
+
+    <h1>الهير الشرقية</h1>
+    <p style="max-width: 700px; margin: 20px auto; color: #666; font-size: 1.2rem;">
+        ملتزمون بتطوير بيئة مستدامة ومجتمع حيوي في قلب الامارات، نجمع بين عراقة الماضي وإشراقة المستقبل الأخضر.
+    </p>
+    <a href="#" class="btn-main">اكتشف مشاريعنا</a>
+</div>
+
+<div class="card-container">
+    {% for news in news_list %}
+    <div class="news-card">
+        <h3 style="color: var(--dark-green);">{{ news.title }}</h3>
+        <p>{{ news.content|truncatewords:20 }}</p>
+        <div style="color: var(--logo-red); font-size: 0.8rem;">{{ news.date_posted|date:"d M Y" }}</div>
     </div>
+    {% empty %}
+    <div class="news-card" style="text-align: center; border-right-color: #ddd;">
+        <p>مرحباً بك في انطلاقة الهير الشرقية الرقمية.</p>
+    </div>
+    {% endfor %}
+</div>
+<section id="contact" style="padding: 60px 10%; background: #f0f7e9;">
+    <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: auto;">
+        <h2 style="color: var(--dark-green); text-align: center;">تواصل معنا</h2>
+        <p style="text-align: center; color: #666;">نسعد باستقبال استفساراتكم حول مشاريع الهير</p>
+
+        <form method="POST" action="/contact/" style="display: flex; flex-direction: column; gap: 15px;">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="الاسم الكامل" required style="padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+            <input type="email" name="email" placeholder="البريد الإلكتروني" required style="padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+            <textarea name="message" placeholder="كيف يمكننا مساعدتك؟" rows="5" required style="padding: 12px; border: 1px solid #ddd; border-radius: 8px;"></textarea>
+            <button type="submit" class="btn-main" style="border: none; cursor: pointer; width: 100%;">إرسال الرسالة</button>
+        </form>
+    </div>
+</section>
+
 </body>
 </html>
