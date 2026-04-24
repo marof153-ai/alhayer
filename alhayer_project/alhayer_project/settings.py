@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['alhayereastern.com', 'www.alhayereastern.com', '://onrender.co
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',  # يجب أن تكون في البداية
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -104,6 +105,28 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+JAZZMIN_SETTINGS = {
+
+    "welcome_sign": "مرحباً بك في إدارة الهير الشرقية",
+    "copyright": "Al Hayer Eastern Ltd",
+    "site_title": "إدارة الهير",
+    "site_header": "الهير الشرقية",
+    "site_brand": "الهير الشرقية",  # هذا هو النص الذي يظهر بجانب اللوجو
+    "login_logo": "images/logo.png",
+    "site_logo_classes": "img-fluid",  # يجعل اللوجو مرناً مع المساحة
+
+    # لجعل النص بجانب اللوجو يظهر بشكل كامل ومنسق
+    "show_ui_builder": False,
+    "use_google_fonts": True,
+}
+JAZZMIN_UI_CUSTOMIZER = {
+    "navbar_theme": "navbar-white",      # جعل الشريط العلوي أبيض
+    "navbar": "navbar-light",           # نصوص غامقة لتناسب الخلفية البيضاء
+    "brand_small_text": False,          # تكبير النص بجانب اللوجو
+    "brand_colour": "navbar-white",     # خلفية اللوجو بيضاء
+    "body_small_text": False,
+    "footer_small_text": False,
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
