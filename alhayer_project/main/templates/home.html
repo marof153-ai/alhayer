@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alhayer | الرقي والبساطة</title>
+    <style>
+        /* تعريف الألوان الهادئة */
+        :root {
+            --bg-color: #f4f7f6; /* رمادي فاتح مائل للأزرق */
+            --primary-color: #2c3e50; /* كحلي غامق وقور */
+            --accent-color: #8e9eab; /* رمادي لؤلؤي */
+            --white: #ffffff;
+            --text-color: #4a4a4a;
+        }
+
+        /* تنسيق عام للجسم */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* حاوية المحتوى الرئيسية */
+        .container {
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* ظل ناعم جداً */
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        /* العنوان الرئيسي */
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        /* النص الفرعي */
+        p {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        /* الأزرار (لوحة التحكم) */
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.3);
+            background-color: #34495e;
+        }
+
+        /* لمسة جمالية في الخلفية */
+        .circle-bg {
+            position: absolute;
+            z-index: -1;
+            background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- دوائر جمالية في الخلفية -->
+    <div class="circle-bg" style="width: 300px; height: 300px; top: -100px; right: -100px;"></div>
+    <div class="circle-bg" style="width: 200px; height: 200px; bottom: -50px; left: -50px;"></div>
+
+    <div class="container">
+        <h1>Alhayer</h1>
+        <p>مرحباً بكم في منصة مشروع الهير. نحن نبني مستقبلاً يجمع بين الأصالة والحداثة الرقمية.</p>
+
+        <a href="/admin" class="btn">دخول لوحة الإدارة</a>
+    </div>
+</body>
+</html>
