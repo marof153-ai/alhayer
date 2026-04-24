@@ -175,3 +175,13 @@ if os.environ.get('DATABASE_URL'):
         default=os.environ.get('DATABASE_URL'), # قمنا بتغيير الكلمة هنا
         ssl_require=True,
     )
+
+# كود لإنشاء مدير تلقائياً في قاعدة البيانات الحقيقية
+from django.contrib.auth import get_user_model
+try:
+    User = get_user_model()
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@example.com', 'admin@2026')
+        print("Superuser created successfully!")
+except:
+    pass
