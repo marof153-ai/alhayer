@@ -172,6 +172,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if os.environ.get('DATABASE_URL'):
     DATABASES['default'] = dj_database_url.config(
         conn_max_age=600,
-        conn_max_string=os.environ.get('DATABASE_URL'),
+        default=os.environ.get('DATABASE_URL'), # قمنا بتغيير الكلمة هنا
         ssl_require=True,
     )
