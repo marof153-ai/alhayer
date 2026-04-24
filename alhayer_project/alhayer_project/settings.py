@@ -39,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',  # يجب أن تكون قبل staticfiles
     'django.contrib.staticfiles',
-'main',
+    'main',
+    'cloudinary',
+
 ]
 
 MIDDLEWARE = [
@@ -118,6 +121,14 @@ JAZZMIN_SETTINGS = {
     # لجعل النص بجانب اللوجو يظهر بشكل كامل ومنسق
     "show_ui_builder": False,
     "use_google_fonts": True,
+"topmenu_links": [
+        {"name": "الرئيسية", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "عرض الموقع العام", "url": "/", "new_window": True}, # هذا هو الرابط المطلوب
+    ],
+
+    # لإظهار رابط "عرض الموقع" في أعلى القائمة الجانبية أيضاً
+    "show_sidebar": True,
+    "navigation_expanded": True,
 }
 JAZZMIN_UI_CUSTOMIZER = {
     "navbar_theme": "navbar-white",      # جعل الشريط العلوي أبيض
@@ -128,6 +139,11 @@ JAZZMIN_UI_CUSTOMIZER = {
     "footer_small_text": False,
 }
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
