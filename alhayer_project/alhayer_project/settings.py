@@ -177,11 +177,14 @@ if os.environ.get('DATABASE_URL'):
     )
 
 # كود لإنشاء مدير تلقائياً في قاعدة البيانات الحقيقية
+# كود لإنشاء مدير جديد - ضعه في نهاية settings.py
 from django.contrib.auth import get_user_model
 try:
     User = get_user_model()
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@example.com', 'admin@2026')
-        print("Superuser created successfully!")
-except:
-    pass
+    username = 'super_hayer' # غيرنا الاسم للتأكد
+    if not User.objects.filter(username=username).exists():
+        User.objects.create_superuser(username, 'admin@alhayer.com', 'Hayer2026!')
+        print("SUCCESS: Superuser 'super_hayer' has been created!")
+except Exception as e:
+    print(f"ERROR creating superuser: {e}")
+
