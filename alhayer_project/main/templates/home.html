@@ -130,27 +130,57 @@
         .news-body p { font-size: 1.25rem; line-height: 1.9; color: #444; margin-bottom: 25px; }
 
         /* 4. قسم التواصل - شكل زجاجي سائل */
-        .contact-section { padding: 100px 10%; background: #f4f9f0; }
+       .contact-section { padding: 80px 10%; }
+
+    .contact-container {
+        max-width: 1000px; margin: 0 auto;
+        background: white; border-radius: 50px;
+        display: grid; grid-template-columns: 1fr 1.2fr; /* عرضي للكمبيوتر */
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+    }
+
+       .contact-info { background: var(--dark); color: white; padding: 60px; text-align: right; }
+       .contact-form { padding: 60px; background: #ffffff; }
+
+          input, textarea {
+        width: 100%; padding: 16px; margin-bottom: 15px;
+        border-radius: 15px; border: 1px solid #eee;
+        background: #fdfdfd; font-size: 1rem; outline: none; text-align: center;
+    }
+  .btn-submit-contact {
+        width: 100%; padding: 16px; border: none; border-radius: 15px;
+        background: linear-gradient(45deg, #76b82a, #1a4a3a);
+        color: white; font-weight: 800; font-size: 1.1rem;
+        cursor: pointer; transition: 0.3s;
+    }
+     .contact-section { padding: 40px 5%; } /* تقليل مساحة الهوامش */
+
         .contact-container {
-            max-width: 1000px; margin: 0 auto; background: white;
-            border-radius: 60px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.08);
+            grid-template-columns: 1fr; /* تحويل العرض إلى طولي */
+            border-radius: 30px; /* تصغير الانحناء ليناسب شاشة الجوال */
         }
-
-        .contact-info { background: var(--dark); color: white; padding: 60px; display: flex; flex-direction: column; justify-content: center; text-align: right; }
-        .contact-form { padding: 60px; }
-
-        input, textarea {
-            width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 20px;
-            border: 1px solid #eee; background: #fafafa; font-size: 1.1rem; outline: none; text-align: center;
-        }
-
         /* الموبايل */
         @media (max-width: 1024px) {
              .nav-container {
             flex-direction: column; /* جعل اللوجو فوق الأزرار */
             gap: 15px;
         }
+        .contact-info {
+            padding: 40px 25px;
+            text-align: center; /* توسيط النص للجوال */
+        }
+
+        .contact-details { text-align: center !important; }
+
+        .contact-form {
+            padding: 40px 20px;
+        }
+
+        .btn-submit-contact {
+            font-size: 1rem; padding: 14px;
+        }
+    }
             .nav-button-group {
             display: flex;
             flex-wrap: wrap; /* السماح للأزرار بالنزول لسطر جديد */
@@ -240,56 +270,46 @@
     </section>
 
     <!-- التواصل -->
-    <section id="contact" class="contact-section">
-        <div class="contact-container">
-            <div class="contact-info">
-                <h2 style="color: var(--primary); font-size: 2.5rem;">تواصل معنا</h2>
-                <p style="font-size: 1.2rem; opacity: 0.8;">نحن هنا للإجابة على استفساراتكم وبناء شراكات مستدامة نحو مستقبل أخضر.</p>
-                <div style="margin-top: 40px; font-size: 1.1rem; line-height: 2;">
-                    <p>📍 أبو ظبي، الإمارات العربية المتحدة</p>
-                    <p>📧 info@alhayereastern.com</p>
-                </div>
-            </div>
-            <div class="contact-form">
-                {% if messages %}
-                    {% for message in messages %}
-                        <div style="padding: 15px; background: #d4edda; color: #155724; border-radius: 15px; margin-bottom: 20px;">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-                <form method="POST" action="{% url 'home' %}">
-                    {% csrf_token %}
-                    <input type="text" name="name" placeholder="الاسم الكامل" required>
-                    <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-                    <textarea name="message" placeholder="كيف يمكننا مساعدتك؟" rows="4" required></textarea>
-                    <button type="submit" style="
-    display: block;
-    width: 100%;
-    margin-top: 25px;
-    padding: 18px;
-    background: linear-gradient(45deg, #76b82a, #1a4a3a);
-    color: white !important;
-    border: none;
-    border-radius: 20px;
-    font-weight: 800;
-    font-size: 1.2rem;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(118, 184, 42, 0.2);
-    transition: 0.3s;
-" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 30px rgba(26, 74, 58, 0.3)';"
-   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 20px rgba(118, 184, 42, 0.2)';"
->
-    إرسال الرسالة الآن
-</button>
-                </form>
+
+            <section id="contact" class="contact-section">
+    <div class="contact-container">
+        <!-- قسم المعلومات (سيظهر في الأعلى في الجوال) -->
+        <div class="contact-info">
+            <h2 style="color: var(--primary); font-size: 2.2rem; margin-bottom: 15px;">تواصل معنا</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9; line-height: 1.6;">نحن هنا للإجابة على استفساراتكم وبناء شراكات مستدامة نحو مستقبل أخضر.</p>
+
+            <div class="contact-details" style="margin-top: 30px; text-align: right;">
+                <p>📍 أبو ظبي، الإمارات العربية المتحدة</p>
+                <p>📧 info@alhayereastern.com</p>
             </div>
         </div>
-    </section>
+             <div class="contact-form">
+            {% if messages %}
+                {% for message in messages %}
+                    <div style="padding: 12px; background: #d4edda; color: #155724; border-radius: 12px; margin-bottom: 15px; font-size: 0.9rem;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST" action="{% url 'home' %}">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="الاسم الكامل" required>
+                <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+                <textarea name="message" placeholder="كيف يمكننا مساعدتك؟" rows="4" required></textarea>
+
+                <!-- زر الإرسال المطور -->
+                <button type="submit" class="btn-submit-contact">
+                    إرسال الرسالة الآن
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
 
     <!-- الفوتر -->
     <footer style="text-align: center; padding: 60px; background: white; color: #999; font-size: 1rem; border-top: 1px solid #eee;">
-        &copy; 2024 الهير الشرقية للمقاولات العامة. جميع الحقوق محفوظة.
+        &copy; 2026 الهير الشرقية. جميع الحقوق محفوظة.
     </footer>
 
 </body>
