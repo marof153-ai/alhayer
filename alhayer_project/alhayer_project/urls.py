@@ -14,15 +14,3 @@ admin.site.site_title = "إدارة مشروع الهير"
 # تغيير النص الترحيبي في الصفحة الرئيسية للإدارة
 admin.site.index_title = "مرحباً بك في نظام إدارة المحتوى"
 
-# كود إنشاء المدير (سيتم تنفيذه عند تشغيل السيرفر)
-from django.contrib.auth import get_user_model
-
-try:
-    User = get_user_model()
-    user = User.objects.get(username='admin_final')
-    user.set_password('Hayer2026!') # كلمة مرور جديدة وبسيطة
-    user.save()
-    print("--- PASSWORD UPDATED SUCCESSFULLY ---")
-except Exception as e:
-    print(f"--- ERROR: {e} ---")
-
