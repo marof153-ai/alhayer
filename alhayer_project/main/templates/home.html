@@ -103,14 +103,13 @@
 
         <h3 style="color: var(--dark-green); margin-top: 0;">{{ news.title }}</h3>
         <!-- استبدل السطر القديم بهذا -->
-         <p>{{ news.content }}</p>
-
+         <p>{{ news.content|truncatewords:50 }}</p>
 
         <div style="color: var(--logo-red); font-size: 0.8rem;">{{ news.date_posted|date:"d M Y" }}</div>
     </div>
 {% empty %}
     <div class="news-card" style="text-align: center; border-right-color: #ddd;">
-        <p>مرحباً بك في انطلاقة الهير الشرقية الرقمية.</p>
+        <p style="line-height: 1.6; color: #555; text-align: justify;">مرحباً بك في انطلاقة الهير الشرقية الرقمية.</p>
     </div>
 {% endfor %}
 

@@ -175,8 +175,8 @@ if os.environ.get('DATABASE_URL'):
         default=os.environ.get('DATABASE_URL'), # قمنا بتغيير الكلمة هنا
         ssl_require=True,
     )
+if os.environ.get('CLOUDINARY_CLOUD_NAME'):
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-# كود لإنشاء مدير تلقائياً في قاعدة البيانات الحقيقية
-# كود لإنشاء مدير جديد - ضعه في نهاية settings.py
 
 
