@@ -93,24 +93,38 @@
 
 <div class="card-container">
    {% for news in news_list %}
-    <div class="news-card">
-        <!-- الجزء المضاف لعرض الصورة -->
-        {% if news.image %}
-            <div style="margin-bottom: 15px;">
-                <img src="{{ news.image.url }}" alt="{{ news.title }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
-            </div>
-        {% endif %}
+    <div class="news-card" style="direction: ltr; text-align: left; padding: 0; overflow: hidden; border-radius: 15px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
 
-        <h3 style="color: var(--dark-green); margin-top: 0;">{{ news.title }}</h3>
-        <!-- استبدل السطر القديم بهذا -->
-         <p>{{ news.content|truncatewords:50 }}</p>
+    <!-- الصورة: جعلناها تأخذ كامل العرض بالأعلى -->
+    {% if news.image %}
+    <div style="width: 100%; height: 250px; overflow: hidden;">
+        <img src="{{ news.image.url }}" alt="{{ news.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    {% endif %}
 
-        <div style="color: var(--logo-red); font-size: 0.8rem;">{{ news.date_posted|date:"d M Y" }}</div>
+    <div style="padding: 25px;">
+        <!-- العنوان: جعلناه أوضح وأكبر -->
+        <h3 style="color: #1a4a3a; font-size: 24px; margin-bottom: 15px; font-weight: 800;">
+            {{ news.title }}
+        </h3>
+
+        <!-- النص: قمنا بإزالة الـ truncate لإظهاره كاملاً وتحسين تباعد الأسطر -->
+        <p style="line-height: 1.8; color: #555; font-size: 16px; text-align: justify; margin-bottom: 20px;">
+            {{ news.content }}
+        </p>
+
+        <!-- التاريخ والتذييل: تنسيق ناعم بالأسفل -->
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px;">
+            <span style="color: #e30613; font-weight: bold; font-size: 13px;">
+                {{ news.date_posted|date:"M d, Y" }}
+            </span>
+            <span style="color: #76b82a; font-size: 12px; font-weight: 600; text-transform: uppercase;">
+                Al Hayer Eastern
+            </span>
+        </div>
     </div>
-{% empty %}
-    <div class="news-card" style="text-align: center; border-right-color: #ddd;">
-        <p style="line-height: 1.6; color: #555; text-align: justify;">مرحباً بك في انطلاقة الهير الشرقية الرقمية.</p>
-    </div>
+</div>
+  </div>
 {% endfor %}
 
 </div>
