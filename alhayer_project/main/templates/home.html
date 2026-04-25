@@ -92,17 +92,25 @@
 </div>
 
 <div class="card-container">
-    {% for news in news_list %}
+   {% for news in news_list %}
     <div class="news-card">
-        <h3 style="color: var(--dark-green);">{{ news.title }}</h3>
+        <!-- الجزء المضاف لعرض الصورة -->
+        {% if news.image %}
+            <div style="margin-bottom: 15px;">
+                <img src="{{ news.image.url }}" alt="{{ news.title }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+            </div>
+        {% endif %}
+
+        <h3 style="color: var(--dark-green); margin-top: 0;">{{ news.title }}</h3>
         <p>{{ news.content|truncatewords:20 }}</p>
         <div style="color: var(--logo-red); font-size: 0.8rem;">{{ news.date_posted|date:"d M Y" }}</div>
     </div>
-    {% empty %}
+{% empty %}
     <div class="news-card" style="text-align: center; border-right-color: #ddd;">
         <p>مرحباً بك في انطلاقة الهير الشرقية الرقمية.</p>
     </div>
-    {% endfor %}
+{% endfor %}
+
 </div>
 <section id="contact" style="padding: 60px 10%; background: #f0f7e9;">
     <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: auto;">
