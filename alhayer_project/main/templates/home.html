@@ -102,7 +102,8 @@
         {% endif %}
 
         <h3 style="color: var(--dark-green); margin-top: 0;">{{ news.title }}</h3>
-        <p>{{ news.content|truncatewords:20 }}</p>
+        <p style="line-height: 1.6; color: #555; text-align: justify;">{{ news.content|truncatewords:50 }}</p>
+
         <div style="color: var(--logo-red); font-size: 0.8rem;">{{ news.date_posted|date:"d M Y" }}</div>
     </div>
 {% empty %}
