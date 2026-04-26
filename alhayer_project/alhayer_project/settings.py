@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import dj_database_url
 import os
 from pathlib import Path
-
+import os
+from django.utils.translation import gettext_lazy as _
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -63,7 +65,9 @@ ROOT_URLCONF = 'alhayer_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 1. اترك هذه القائمة فارغة تماماً
         'DIRS': [],
+        # 2. تأكد أن هذا الخيار True (سيقوم Django بالبحث داخل مجلد main/templates تلقائياً)
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,10 +75,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'alhayer_project.wsgi.application'
 
@@ -145,13 +151,22 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES = [
+    ('ar', _('Arabic')),
+    ('en', _('English')),
+]
 
-TIME_ZONE = 'UTC'
+# 2. اللغة الافتراضية
+LANGUAGE_CODE = 'ar'
 
+# 3. تفعيل نظام الترجمة
 USE_I18N = True
-
+USE_L10N = True
+TIME_ZONE = 'UTC'
 USE_TZ = True
 
 

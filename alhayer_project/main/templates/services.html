@@ -1,96 +1,83 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}خدماتنا | الهير الشرقية{% endblock %}
+{% block title %}{% translate "خدماتنا | الهير الشرقية" %}{% endblock %}
 
-{% block extra_css %}
+{% block content %}
 <style>
-    /* 1. إعدادات الحاوية لمنع التمرير الجانبي وتوسيط المحتوى */
-    .page-wrapper {
+    /* 🟢 حاوية الخدمات المحدثة */
+    .services-wrapper {
+        width: 100%;
         background: #ffffff;
-        width: 100%;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        padding: 60px 0 100px 0;
     }
 
-    /* 2. حاجز مسافة ديناميكي يتناسب مع القائمة العلوية */
-    .nav-spacer {
-        height: clamp(100px, 15vh, 140px);
-        width: 100%;
-    }
-
-    /* 3. حاوية الخدمات الرئيسية */
-    .services-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 5%;
         text-align: center;
-        padding: 40px 5%;
-        width: 100%;
-        max-width: 1300px; /* ضمان عدم تمدد المحتوى بشكل مبالغ فيه */
+    }
+
+    .services-header {
+        margin-bottom: 60px;
+        padding-top: 20px; /* حل مشكلة النص المقصوص في الأعلى */
     }
 
     .services-header h1 {
-        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+        color: var(--p-calm-green);
         font-weight: 900;
-        color: #1a4a3a;
         margin-bottom: 20px;
-        line-height: 1.1;
     }
 
     .services-header p {
-        font-size: clamp(1.1rem, 3vw, 1.4rem);
+        font-size: 1.2rem;
         color: #555;
-        max-width: 850px;
-        margin: 0 auto 60px auto;
-        line-height: 1.7;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.8;
     }
 
-    /* 4. شبكة الكروت (Grid) - توزيع ممركز واحترافي */
+    /* 🛠️ شبكة الكروت المتساوية */
     .services-grid {
         display: grid;
-        /* توزيع ذكي: عمود واحد في الجوال، 2 في التابلت، 3 في الكمبيوتر */
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 30px;
         width: 100%;
-        padding-bottom: 100px;
     }
 
     .service-card {
         background: #ffffff;
         padding: 50px 30px;
-        border-radius: 25px; /* زوايا ناعمة تتناسق مع الكبسولات */
-        box-shadow: 0 15px 45px rgba(0,0,0,0.05);
-        border: 1px solid #f8f8f8;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        border: 1px solid #f0f0f0;
+        transition: 0.4s ease;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
+        min-height: 400px; /* لضمان تساوي ارتفاع الكروت */
     }
 
     .service-card:hover {
         transform: translateY(-12px);
-        box-shadow: 0 25px 60px rgba(118, 184, 42, 0.15);
-        border-color: #76b82a;
+        border-color: var(--p-calm-green);
+        box-shadow: 0 20px 45px rgba(45, 90, 39, 0.12);
     }
 
     .service-icon {
-        font-size: 4rem;
+        font-size: 4.5rem;
         margin-bottom: 25px;
         display: block;
         transition: 0.3s;
     }
 
-    .service-card:hover .service-icon {
-        transform: scale(1.15);
-    }
-
     .service-card h3 {
         font-size: 1.8rem;
-        color: #1a4a3a;
+        color: var(--p-dark);
         margin-bottom: 15px;
         font-weight: 800;
     }
@@ -98,81 +85,70 @@
     .service-card p {
         font-size: 1.05rem;
         color: #666;
-        line-height: 1.6;
-        margin: 0;
+        line-height: 1.7;
+        margin-top: auto; /* دفع النص للأسفل لترتيب المحتوى */
     }
 
-    /* تحسينات نهائية للهاتف */
+    /* تحسينات الجوال */
     @media (max-width: 768px) {
-        .nav-spacer { height: 90px; }
         .services-header h1 { font-size: 2.2rem; }
-        .services-grid { gap: 20px; }
-        .service-card { padding: 40px 20px; }
+        .service-card { min-height: auto; padding: 40px 20px; }
     }
 </style>
-{% endblock %}
 
-{% block content %}
-<div class="page-wrapper">
-    <!-- الفراغ العلوي لمنع التداخل مع الأزرار الكبسولية -->
-    <div class="nav-spacer"></div>
-
-    <div class="services-container">
-        <!-- رأس الصفحة ممركز -->
+<div class="services-wrapper">
+    <div class="container">
+        <!-- رأس الصفحة مصلح -->
         <header class="services-header">
-            <h1>خدماتنا المتخصصة</h1>
-            <p>نقدم حلولاً زراعية متكاملة تجمع بين العلم والجمال لضمان أفضل النتائج لمزارعكم وحدائقكم.</p>
+            <h1>{% translate "خدماتنا المتخصصة" %}</h1>
+            <p>{% translate "نقدم حلولاً زراعية متكاملة تجمع بين العلم والجمال لضمان أفضل النتائج لمزارعكم وحدائقكم." %}</p>
         </header>
 
+        <!-- شبكة الخدمات مع ترجمة كاملة -->
         <div class="services-grid">
-            <!-- 1 -->
+
             <div class="service-card">
                 <span class="service-icon">🎨</span>
-                <h3>تصميم الحدائق</h3>
-                <p>ابتكار مخططات تحول مساحاتكم إلى لوحات فنية طبيعية.</p>
+                <h3>{% translate "تصميم الحدائق" %}</h3>
+                <p>{% translate "ابتكار مخططات تحول مساحاتكم إلى لوحات فنية طبيعية." %}</p>
             </div>
 
-            <!-- 2 -->
             <div class="service-card">
                 <span class="service-icon">🏗️</span>
-                <h3>تنفيذ الحدائق</h3>
-                <p>بناء وتنسيق المواقع بأعلى معايير الجودة وبإشراف خبراء متخصصين.</p>
+                <h3>{% translate "تنفيذ الحدائق" %}</h3>
+                <p>{% translate "بناء وتنسيق المواقع بأعلى معايير الجودة وبإشراف مهندسين متخصصين." %}</p>
             </div>
 
-            <!-- 3 -->
             <div class="service-card">
                 <span class="service-icon">💧</span>
-                <h3>أنظمة الري</h3>
-                <p>تركيب وصيانة تقنيات الري لترشيد الاستهلاك وضمان صحة النباتات.</p>
+                <h3>{% translate "أنظمة الري" %}</h3>
+                <p>{% translate "تركيب وصيانة تقنيات الري الحديثة لترشيد الاستهلاك وضمان صحة النباتات." %}</p>
             </div>
 
-            <!-- 4 -->
             <div class="service-card">
                 <span class="service-icon">🌱</span>
-                <h3>العشب الطبيعي</h3>
-                <p>توريد وتركيب أجود أنواع العشب الطبيعي المتلائم مع بيئة الإمارات.</p>
+                <h3>{% translate "العشب الطبيعي" %}</h3>
+                <p>{% translate "توريد وتركيب أجود أنواع العشب الطبيعي المتلائم مع بيئة الإمارات." %}</p>
             </div>
 
-            <!-- 5 -->
             <div class="service-card">
                 <span class="service-icon">🧶</span>
-                <h3>العشب الصناعي</h3>
-                <p>توريد وتركيب العشب الصناعي عالي الجودة.</p>
+                <h3>{% translate "العشب الصناعي" %}</h3>
+                <p>{% translate "توريد وتركيب العشب الصناعي عالي الجودة بمظهر طبيعي ودوام طويل." %}</p>
             </div>
 
-            <!-- 6 -->
             <div class="service-card">
                 <span class="service-icon">🌳</span>
-                <h3>الأشجار</h3>
-                <p>زراعة وصيانة كافة أنواع الأشجار المثمرة والزينة.</p>
+                <h3>{% translate "الأشجار" %}</h3>
+                <p>{% translate "زراعة وصيانة كافة أنواع الأشجار المثمرة وأشجار الزينة بأسلوب علمي." %}</p>
             </div>
 
-            <!-- 7 -->
             <div class="service-card">
                 <span class="service-icon">⛳</span>
-                <h3>المسطحات الخضراء</h3>
-                <p>صيانة وإدارة جميع أنواع المسطحات الخضراء.</p>
+                <h3>{% translate "المسطحات الخضراء" %}</h3>
+                <p>{% translate "صيانة شاملة للمسطحات الخضراء والملاعب لضمان نضارتها طوال العام." %}</p>
             </div>
+
         </div>
     </div>
 </div>

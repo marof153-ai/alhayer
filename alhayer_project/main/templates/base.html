@@ -1,55 +1,96 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'en' %}ltr{% else %}rtl{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>{% block title %}الهير الشرقية{% endblock %}</title>
-    <link href="https://googleapis.com" rel="stylesheet">
-    <style>
-        :root { --p-dark: #1a4a3a; --p-light: #76b82a; --white: #ffffff; }
-        * { box-sizing: border-box; margin: 0; padding: 0; transition: 0.3s ease; }
-        body { font-family: 'Cairo', sans-serif; background: var(--white); overflow-x: hidden; }
+    <title>{% block title %}{% translate "الهير الشرقية" %}{% endblock %}</title>
 
-        /* 🟢 القائمة العلوية: بيضاء نقية مع لوجو يمين */
+    <!-- خط القاهرة -->
+    <link href="https://googleapis.com" rel="stylesheet">
+
+    <style>
+        :root {
+            --p-calm-green: #2d5a27;
+            --p-hover-green: #3d7a35;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: 0.3s ease; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--white);
+            overflow-x: hidden;
+            padding-top: 95px; /* مسافة لضمان عدم اختفاء المحتوى تحت القائمة */
+        }
+
+        /* 🟢 القائمة العلوية الثابتة */
         .main-nav {
             position: fixed; top: 0; width: 100%; z-index: 10000;
-            background: var(--white); height: 90px;
-            display: flex; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            border-bottom: 2px solid var(--p-light);
+            background: var(--white);
+            height: 95px;
+            display: flex; align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--p-calm-green);
         }
+
         .nav-container {
             max-width: 1400px; margin: 0 auto; width: 100%;
             display: flex; justify-content: space-between; align-items: center; padding: 0 4%;
+            /* تبديل الاتجاه حسب اللغة */
+            flex-direction: row;
         }
-        .logo-wrap img { height: 75px; width: auto; }
 
-        /* الأزرار الكبسولة */
-        .nav-links { display: flex; gap: 8px; align-items: center; }
+        /* اللوجو يمين في العربي / يسار في الإنجليزي */
+        .logo-wrap img { height: 75px; width: auto; display: block; }
+
+        /* الأزرار يسار في العربي / يمين في الإنجليزي */
+        .nav-links { display: flex; gap: 10px; align-items: center; }
+
         .nav-btn {
-            text-decoration: none; color: white !important; background: var(--p-dark);
-            padding: 8px 22px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
+            text-decoration: none;
+            color: white !important;
+            background: var(--p-calm-green);
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap;
         }
-        .nav-btn:hover { background: var(--p-light); transform: translateY(-2px); }
-        .btn-highlight { background: var(--p-light); }
 
-        /* زر الجوال */
+        .nav-btn:hover {
+            background: var(--p-hover-green);
+            transform: translateY(-2px);
+        }
+
+        .lang-switch {
+            text-decoration: none;
+            color: var(--p-calm-green) !important;
+            border: 1px solid var(--p-calm-green);
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
         .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-        .menu-toggle span { width: 28px; height: 3px; background: var(--p-dark); border-radius: 2px; }
+        .menu-toggle span { width: 28px; height: 3px; background: var(--p-calm-green); border-radius: 2px; }
 
         /* 📱 تنسيق الجوال */
         @media (max-width: 992px) {
             .menu-toggle { display: flex; }
             .nav-links {
                 position: fixed; top: 90px; right: -100%; width: 100%;
-                background: white; flex-direction: column; padding: 20px;
-                gap: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); display: flex;
+                background: white; flex-direction: column; padding: 30px;
+                gap: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); display: flex;
             }
             .nav-links.active { right: 0; }
-            .nav-btn { width: 100%; text-align: center; padding: 15px; }
+            .nav-btn, .lang-switch { width: 100%; text-align: center; }
         }
 
-        /* واتساب عائم */
         .whatsapp-btn {
             position: fixed; bottom: 25px; left: 25px; z-index: 9999;
             background: #25d366; width: 60px; height: 60px; border-radius: 50%;
@@ -62,21 +103,36 @@
 <body>
     <nav class="main-nav">
         <div class="nav-container">
+            <!-- اللوجو -->
             <div class="logo-wrap">
-                <a href="{% url 'home' %}"><img src="{% static 'images/logo1.png' %}" alt="الهير الشرقية"></a>
+                <a href="/{{ LANGUAGE_CODE }}/">
+                    <img src="{% static 'images/logo1.png' %}" alt="Logo">
+                </a>
             </div>
-            <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+
+            <!-- زر الجوال -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span><span></span><span></span>
+            </div>
+
+            <!-- الروابط -->
             <div class="nav-links" id="nav-links">
-                <a href="{% url 'home' %}" class="nav-btn">الرئيسية</a>
-                <a href="/#about" class="nav-btn">من نحن</a>
-                <a href="{% url 'services_page' %}" class="nav-btn">خدماتنا</a>
-                <a href="/#news" class="nav-btn">الأخبار</a>
-                <a href="/#contact" class="nav-btn btn-highlight">اتصل بنا</a>
+                <a href="{% url 'home' %}" class="nav-btn">{% translate "الرئيسية" %}</a>
+                <a href="/{{ LANGUAGE_CODE }}/#about" class="nav-btn">{% translate "من نحن" %}</a>
+                <a href="{% url 'services_page' %}" class="nav-btn">{% translate "خدماتنا" %}</a>
+                <a href="/{{ LANGUAGE_CODE }}/#news" class="nav-btn">{% translate "الأخبار" %}</a>
+                <a href="/{{ LANGUAGE_CODE }}/#contact" class="nav-btn">{% translate "اتصل بنا" %}</a>
+
+                {% if LANGUAGE_CODE == 'ar' %}
+                    <a href="/en{{ request.get_full_path|slice:'3:' }}" class="lang-switch">English</a>
+                {% else %}
+                    <a href="/ar{{ request.get_full_path|slice:'3:' }}" class="lang-switch">العربية</a>
+                {% endif %}
             </div>
         </div>
     </nav>
 
-    <main style="padding-top: 90px;">
+    <main>
         {% block content %}{% endblock %}
     </main>
 
@@ -87,23 +143,9 @@
     <script>
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
-
-        mobileMenu.addEventListener('click', (e) => {
-            navLinks.classList.toggle('active');
-            e.stopPropagation();
-        });
-
-        // إغلاق القائمة تلقائياً عند الضغط على أي رابط
-        document.querySelectorAll('.nav-btn').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
-                navLinks.classList.remove('active');
-            }
+        mobileMenu.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => { navLinks.classList.remove('active'); });
         });
     </script>
 </body>
