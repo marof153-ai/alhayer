@@ -17,3 +17,6 @@ def home(request):
 
     news_list = News.objects.all().order_by('-date_posted')
     return render(request, 'home.html', {'news_list': news_list})
+
+def services_view(request):
+    return render(request, 'services.html')

@@ -1,316 +1,265 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الهير الشرقية | حياة خضراء</title>
-    <style>
-        /* إعدادات المتغيرات والألوان */
-        :root {
-            --primary: #76b82a;
-            --accent: #e30613;
-            --dark: #1a4a3a;
-            --glass: rgba(255, 255, 255, 0.7);
-            --shadow: 0 20px 40px rgba(0,0,0,0.06);
-        }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+{% block title %}الرئيسية | الهير الشرقية{% endblock %}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; background: linear-gradient(135deg, #fdfdfd 0%, #f1f8eb 100%);
-            color: var(--dark); text-align: center; overflow-x: hidden;
-        }
-
-        /* 1. القائمة العلوية الاحترافية */
-        /* 1. إصلاح تداخل القائمة مع المحتوى */
-  .main-nav {
-        position: fixed; top: 0; left: 0; width: 100%;
-        background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px);
-        z-index: 9999; border-bottom: 1px solid rgba(0,0,0,0.05);
-        padding: 10px 0;
+{% block extra_css %}
+<style>
+    /* 1. إعدادات الحاويات الرئيسية */
+    .page-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background: #ffffff;
+        overflow-x: hidden; /* لمنع أي تمرير جانبي في الجوال */
     }
-    /* 2. إضافة مسافة أمان علوية ضخمة للهيرو */
-    /* 1. تنسيق قسم الهيرو لضمان التوسيط والمساحة */
-    .hero {
-        padding: 220px 10% 120px; /* مساحة كبيرة من الأعلى لمنع التداخل */
+
+    /* 2. حاجز مسافة ديناميكي */
+    .nav-spacer {
+        height: clamp(100px, 15vh, 180px);
+        width: 100%;
+    }
+
+    /* 3. تنسيق قسم الهيرو */
+    .hero-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 35px; /* مسافة متساوية بين العناصر */
+        padding: 40px 5%;
+        width: 100%;
     }
 
-    .hero h1 {
-        font-size: 4.5rem;
-        font-weight: 900;
+    .hero-container h1 {
+        font-size: clamp(2.5rem, 8vw, 5.5rem);
+        font-weight: 800;
         color: #1a4a3a;
-        margin: 0;
+        margin: 0 0 20px 0;
+        line-height: 1.2;
     }
 
-    .hero p {
-        font-size: 1.4rem;
+    .hero-container p {
+        font-size: clamp(1.1rem, 2.5vw, 1.6rem);
         color: #555;
         max-width: 800px;
-        line-height: 1.8;
-        margin: 0;
+        line-height: 1.7;
+        margin: 0 auto 40px auto;
     }
 
-        .nav-container {
-        max-width: 95%; margin: 0 auto;
-        display: flex; justify-content: space-between; align-items: center; padding: 0 30px;
-    }
-
-         .logo img { height: 75px; width: auto; }
-    .nav-button-group { display: flex; gap: 10px; }
-
-         /* تحويل جميع الروابط إلى أزرار بتدرج لوني موحد */
-    /* 3. تنسيق الأزرار الموحد (الذي طلبته) */
-     .nav-btn {
-        text-decoration: none; color: white !important;
-        background: linear-gradient(45deg, #76b82a, #1a4a3a);
-        padding: 12px 20px; border-radius: 15px;
-        font-weight: 800; font-size: 0.95rem; white-space: nowrap;
-    }
-
-    /* تأثير عند تمرير الماوس على أي زر */
-    .nav-btn:hover {
-        transform: translateY(-3px);
-        background: linear-gradient(45deg, var(--accent), #b5050f); /* يتحول للأحمر عند التحويم */
-        box-shadow: 0 8px 25px rgba(227, 6, 19, 0.3);
-    }
-
-    /* تمييز الزر الفعال (الصفحة الحالية) بلون أغمق قليلاً أو تأثير مختلف */
-    .nav-btn.active {
-        box-shadow: inset 0 0 10px rgba(0,0,0,0.2), 0 4px 15px rgba(118, 184, 42, 0.2);
-        border: 1px solid rgba(255,255,255,0.3);
-    }}
-
-        .btn-main {
-            background: var(--primary); color: white; padding: 18px 50px;
-            border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 1.3rem;
-            display: inline-block; box-shadow: 0 10px 30px rgba(118, 184, 42, 0.3);
-        }
-        .btn-main:hover { background: var(--dark); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(26, 74, 58, 0.4); }
-
-        /* 3. قسم الأخبار - كروت زجاجية عريضة */
-        .section-title { font-size: 3rem; margin: 100px 0 50px; font-weight: 900; }
-        .btn-explore {
+    /* 4. زر استكشف رؤيتنا */
+    .btn-hero {
         display: inline-block;
-        text-decoration: none !important; /* إزالة الخط السفلي */
         background: linear-gradient(45deg, #76b82a, #1a4a3a);
-        color: white !important; /* لون النص أبيض */
-        padding: 20px 50px;
+        color: white !important;
+        padding: clamp(12px, 2vw, 20px) clamp(30px, 5vw, 70px);
         border-radius: 50px;
+        font-weight: 700;
+        font-size: clamp(1rem, 1.5vw, 1.4rem);
+        text-decoration: none;
+        box-shadow: 0 15px 35px rgba(118, 184, 42, 0.3);
+        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-hero:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 45px rgba(26, 74, 58, 0.4);
+    }
+
+    /* 5. قسم الأخبار */
+    .section-title {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        color: #1a4a3a;
+        margin: clamp(40px, 10vh, 100px) 0 40px 0;
         font-weight: 900;
-        font-size: 1.3rem;
-        box-shadow: 0 10px 30px rgba(118, 184, 42, 0.3);
-        transition: all 0.3s ease;
-        border: none;
-    }
-       .btn-explore:hover {
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 15px 40px rgba(26, 74, 58, 0.4);
-        background: linear-gradient(45deg, #1a4a3a, #76b82a);
+        text-align: center;
     }
 
-        .news-grid { display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 0 10% 100px; }
+    #news {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 40px 5%;
+    }
 
-        .news-card {
-            background: var(--glass); backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.8); border-radius: 50px;
-            padding: 40px; width: 100%; max-width: 1000px; display: flex; flex-direction: column;
-            align-items: center; box-shadow: var(--shadow);
-        }
+    .news-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 30px;
+    }
 
-        .news-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 40px; margin-bottom: 30px; }
-        .news-body { width: 100%; }
-        .news-body h3 { font-size: 2.2rem; margin: 10px 0; color: var(--dark); }
-        .news-body p { font-size: 1.25rem; line-height: 1.9; color: #444; margin-bottom: 25px; }
+    .news-card {
+        background: #fff;
+        border-radius: clamp(20px, 4vw, 40px);
+        padding: clamp(20px, 4vw, 40px);
+        width: 100%;
+        max-width: 1000px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+        text-align: center;
+        transition: 0.3s;
+    }
 
-        /* 4. قسم التواصل - شكل زجاجي سائل */
-       .contact-section { padding: 80px 10%; }
+    .news-img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: clamp(15px, 3vw, 30px);
+        margin-bottom: 25px;
+    }
 
-    .contact-container {
-        max-width: 1000px; margin: 0 auto;
-        background: white; border-radius: 50px;
-        display: grid; grid-template-columns: 1fr 1.2fr; /* عرضي للكمبيوتر */
+    .news-body h3 {
+        font-size: clamp(1.4rem, 4vw, 2.2rem);
+        color: #1a4a3a;
+        margin: 15px 0;
+    }
+
+    .news-body p {
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        color: #666;
+        line-height: 1.7;
+    }
+
+    /* 6. قسم التواصل */
+    .contact-section {
+        width: 100%;
+        padding: clamp(40px, 8vh, 100px) 5%;
+        background: #fbfdf9;
+    }
+
+    .contact-card {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        background: white;
+        border-radius: clamp(25px, 5vw, 50px);
         overflow: hidden;
-        box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+        box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+        max-width: 1150px;
+        margin: 0 auto;
     }
 
-       .contact-info { background: var(--dark); color: white; padding: 60px; text-align: right; }
-       .contact-form { padding: 60px; background: #ffffff; }
-
-          input, textarea {
-        width: 100%; padding: 16px; margin-bottom: 15px;
-        border-radius: 15px; border: 1px solid #eee;
-        background: #fdfdfd; font-size: 1rem; outline: none; text-align: center;
+    .info-side {
+        background: #1a4a3a;
+        color: white;
+        padding: clamp(30px, 5vw, 70px);
+        text-align: right;
     }
-  .btn-submit-contact {
-        width: 100%; padding: 16px; border: none; border-radius: 15px;
+
+    .form-side { padding: clamp(30px, 5vw, 70px); }
+
+    input, textarea {
+        width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 12px;
+        border: 1px solid #eee; font-size: 1rem; text-align: center;
+        background: #f9f9f9; transition: 0.3s;
+    }
+
+    input:focus, textarea:focus {
+        border-color: #76b82a;
+        outline: none;
+        background: #fff;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 18px;
         background: linear-gradient(45deg, #76b82a, #1a4a3a);
-        color: white; font-weight: 800; font-size: 1.1rem;
-        cursor: pointer; transition: 0.3s;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        font-weight: 800;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: 0.3s;
     }
-     .contact-section { padding: 40px 5%; } /* تقليل مساحة الهوامش */
 
-        .contact-container {
-            grid-template-columns: 1fr; /* تحويل العرض إلى طولي */
-            border-radius: 30px; /* تصغير الانحناء ليناسب شاشة الجوال */
+    /* شاشات الجوال والتابلت */
+    @media (max-width: 992px) {
+        .contact-card {
+            grid-template-columns: 1fr;
         }
-        /* الموبايل */
-        @media (max-width: 1024px) {
-             .nav-container {
-            flex-direction: column; /* جعل اللوجو فوق الأزرار */
-            gap: 15px;
-        }
-        .contact-info {
-            padding: 40px 25px;
-            text-align: center; /* توسيط النص للجوال */
-        }
-
-        .contact-details { text-align: center !important; }
-
-        .contact-form {
+        .info-side {
+            text-align: center;
             padding: 40px 20px;
         }
-
-        .btn-submit-contact {
-            font-size: 1rem; padding: 14px;
+        .info-side h2 {
+            font-size: 2rem !important;
+        }
+        .form-side {
+            padding: 30px 20px;
         }
     }
-            .nav-button-group {
-            display: flex;
-            flex-wrap: wrap; /* السماح للأزرار بالنزول لسطر جديد */
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-        }
-            .nav-btn {
-            padding: 8px 12px; /* تصغير حجم الأزرار قليلاً */
-            font-size: 0.8rem;
-            border-radius: 10px;
-        }
 
-        .logo img {
-            height: 55px; /* تصغير اللوجو في الجوال */
-        }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
 
-        /* إضافة مساحة علوية أكبر للمحتوى في الجوال */
-        header.hero {
-            padding-top: 220px !important;
-        }
-        }
-    </style>
-</head>
-<body>
+{% block content %}
+<div class="page-wrapper">
+    <div class="nav-spacer"></div>
 
-    <!-- القائمة العلوية -->
-    <nav class="main-nav">
-    <div class="nav-container">
-        <div class="logo">
-            <img src="{% static 'images/logo1.png' %}" alt="الهير الشرقية">
-        </div>
-
-        <!-- أضفنا معرف (ID) للمجموعة للتحكم بها في الجوال -->
-        <div class="nav-button-group" id="navMenu">
-            <a href="#" class="nav-btn active">الرئيسية</a>
-            <a href="#about" class="nav-btn">من نحن</a>
-            <a href="#projects" class="nav-btn">مشاريعنا</a>
-            <a href="#news" class="nav-btn">الأخبار</a>
-            <a href="#contact" class="nav-btn btn-highlight">اتصل بنا</a>
-        </div>
-    </div>
-</nav>
-
-    <!-- الهيرو -->
-    <header class="hero">
+    <!-- قسم الهيرو -->
+    <header class="hero-container">
         <h1>الهير الشرقية</h1>
         <p>نبتكر حلولاً مستدامة تجمع بين أصالة التراث الإماراتي ورؤية المستقبل الأخضر لتمكين مجتمعات حيوية في قلب الدولة.</p>
-        <a href="#projects" style="
-    display: inline-block;
-    margin-top: 40px;
-    padding: 18px 50px;
-    background: linear-gradient(45deg, #76b82a, #1a4a3a);
-    color: white !important;
-    text-decoration: none !important;
-    border-radius: 50px;
-    font-weight: 900;
-    font-size: 1.3rem;
-    box-shadow: 0 10px 25px rgba(118, 184, 42, 0.3);
-    transition: 0.3s;
-    border: none;
-" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(45deg, #1a4a3a, #76b82a)';"
-   onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(45deg, #76b82a, #1a4a3a)';"
->
-    استكشف رؤيتنا
-</a>
+        <a href="{% url 'home' %}" class="btn-hero">استكشف رؤيتنا</a>
     </header>
 
-    <!-- الأخبار -->
+    <!-- قسم الأخبار -->
     <section id="news">
-        <h2 class="section-title">آخر المستجدات</h2>
+        <h2 class="section-title">آخر الأخبار</h2>
         <div class="news-grid">
             {% for news in news_list %}
-            <div class="news-card">
-                {% if news.image %}
-                <img src="{{ news.image.url }}" class="news-img" alt="{{ news.title }}">
-                {% endif %}
+            <article class="news-card">
+                <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-img">
                 <div class="news-body">
-                    <span style="color: var(--accent); font-weight: 900; font-size: 1rem;">{{ news.date_posted|date:"d M Y" }}</span>
                     <h3>{{ news.title }}</h3>
                     <p>{{ news.content }}</p>
-                    <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 900; font-size: 1.1rem;">اقرأ الخبر كاملاً ←</a>
                 </div>
-            </div>
+            </article>
+            {% empty %}
+                <p>لا توجد أخبار حالياً.</p>
             {% endfor %}
         </div>
     </section>
 
-    <!-- التواصل -->
+    <!-- قسم التواصل -->
+    <section id="contact" class="contact-section">
+        <div class="contact-card">
+            <div class="info-side">
+                <h2 style="font-size: 2.8rem; margin-bottom: 20px;">تواصل معنا</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8;">نحن هنا للإجابة على جميع استفساراتكم وتحويل أفكاركم إلى مشاريع خضراء.</p>
+                <div style="margin-top: 40px; font-size: 1rem; line-height: 2.2;">
+                    <p>📍 الموقع: ابوظبي، الامارات العربية المتحدة</p>
+                    <p>📞 الهاتف: 971XXXXXXXX+</p>
+                </div>
+            </div>
+            <div class="form-side">
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if forloop.last %}
+                            <div style="padding: 15px; margin-bottom: 20px; border-radius: 12px; background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c3e6cb; font-weight: bold; text-align: center; animation: fadeIn 0.5s;">
+                                ✅ {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
 
-            <section id="contact" class="contact-section">
-    <div class="contact-container">
-        <!-- قسم المعلومات (سيظهر في الأعلى في الجوال) -->
-        <div class="contact-info">
-            <h2 style="color: var(--primary); font-size: 2.2rem; margin-bottom: 15px;">تواصل معنا</h2>
-            <p style="font-size: 1.1rem; opacity: 0.9; line-height: 1.6;">نحن هنا للإجابة على استفساراتكم وبناء شراكات مستدامة نحو مستقبل أخضر.</p>
-
-            <div class="contact-details" style="margin-top: 30px; text-align: right;">
-                <p>📍 أبو ظبي، الإمارات العربية المتحدة</p>
-                <p>📧 info@alhayereastern.com</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="الاسم الكامل" required>
+                    <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+                    <textarea name="message" rows="5" placeholder="كيف يمكننا مساعدتك؟" required></textarea>
+                    <button type="submit" class="submit-btn">إرسال الرسالة</button>
+                </form>
             </div>
         </div>
-             <div class="contact-form">
-            {% if messages %}
-                {% for message in messages %}
-                    <div style="padding: 12px; background: #d4edda; color: #155724; border-radius: 12px; margin-bottom: 15px; font-size: 0.9rem;">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-
-            <form method="POST" action="{% url 'home' %}">
-                {% csrf_token %}
-                <input type="text" name="name" placeholder="الاسم الكامل" required>
-                <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-                <textarea name="message" placeholder="كيف يمكننا مساعدتك؟" rows="4" required></textarea>
-
-                <!-- زر الإرسال المطور -->
-                <button type="submit" class="btn-submit-contact">
-                    إرسال الرسالة الآن
-                </button>
-            </form>
-        </div>
-    </div>
-</section>
-
-    <!-- الفوتر -->
-    <footer style="text-align: center; padding: 60px; background: white; color: #999; font-size: 1rem; border-top: 1px solid #eee;">
-        &copy; 2026 الهير الشرقية. جميع الحقوق محفوظة.
-    </footer>
-
-</body>
-</html>
+    </section>
+</div>
+{% endblock %}
