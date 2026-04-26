@@ -5,16 +5,19 @@
 
 {% block extra_css %}
 <style>
-    /* 1. إعدادات الحاوية لمنع التمرير الجانبي */
+    /* 1. إعدادات الحاوية لمنع التمرير الجانبي وتوسيط المحتوى */
     .page-wrapper {
         background: #ffffff;
         width: 100%;
         overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    /* 2. حاجز مسافة ديناميكي */
+    /* 2. حاجز مسافة ديناميكي يتناسب مع القائمة العلوية */
     .nav-spacer {
-        height: clamp(100px, 15vh, 160px);
+        height: clamp(100px, 15vh, 140px);
         width: 100%;
     }
 
@@ -24,92 +27,98 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 40px 5%; /* تقليل الهوامش للجوال */
+        padding: 40px 5%;
         width: 100%;
+        max-width: 1300px; /* ضمان عدم تمدد المحتوى بشكل مبالغ فيه */
     }
 
     .services-header h1 {
-        font-size: clamp(2.2rem, 8vw, 4.5rem); /* حجم خط مرن */
-        font-weight: 800;
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 900;
         color: #1a4a3a;
         margin-bottom: 20px;
-        line-height: 1.2;
+        line-height: 1.1;
     }
 
     .services-header p {
-        font-size: clamp(1rem, 3.5vw, 1.3rem);
-        color: #666;
-        max-width: 800px;
-        margin: 0 auto 50px auto;
-        line-height: 1.8;
+        font-size: clamp(1.1rem, 3vw, 1.4rem);
+        color: #555;
+        max-width: 850px;
+        margin: 0 auto 60px auto;
+        line-height: 1.7;
     }
 
-    /* 4. شبكة الكروت (Grid) المتجاوبة */
+    /* 4. شبكة الكروت (Grid) - توزيع ممركز واحترافي */
     .services-grid {
         display: grid;
-        /* توزيع ذكي: عمود واحد في الجوال، عمودين في التابلت، 3 في الكمبيوتر */
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: clamp(20px, 4vw, 30px);
+        /* توزيع ذكي: عمود واحد في الجوال، 2 في التابلت، 3 في الكمبيوتر */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
         width: 100%;
-        max-width: 1200px;
-        padding-bottom: 80px;
+        padding-bottom: 100px;
     }
 
     .service-card {
-        background: #fff;
-        padding: clamp(30px, 5vw, 50px) 20px;
-        border-radius: 30px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-        border: 1px solid #f0f0f0;
+        background: #ffffff;
+        padding: 50px 30px;
+        border-radius: 25px; /* زوايا ناعمة تتناسق مع الكبسولات */
+        box-shadow: 0 15px 45px rgba(0,0,0,0.05);
+        border: 1px solid #f8f8f8;
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
     }
 
     .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 25px 50px rgba(118, 184, 42, 0.15);
+        transform: translateY(-12px);
+        box-shadow: 0 25px 60px rgba(118, 184, 42, 0.15);
         border-color: #76b82a;
     }
 
     .service-icon {
-        font-size: clamp(3rem, 6vw, 4rem);
-        margin-bottom: 20px;
+        font-size: 4rem;
+        margin-bottom: 25px;
         display: block;
+        transition: 0.3s;
+    }
+
+    .service-card:hover .service-icon {
+        transform: scale(1.15);
     }
 
     .service-card h3 {
-        font-size: clamp(1.4rem, 4vw, 1.8rem);
+        font-size: 1.8rem;
         color: #1a4a3a;
-        margin-bottom: 12px;
-        font-weight: 700;
+        margin-bottom: 15px;
+        font-weight: 800;
     }
 
     .service-card p {
-        font-size: 1rem;
-        color: #555;
+        font-size: 1.05rem;
+        color: #666;
         line-height: 1.6;
         margin: 0;
     }
 
-    /* تحسينات إضافية للجوال */
-    @media (max-width: 480px) {
-        .services-container {
-            padding: 20px 5%;
-        }
-        .service-card {
-            padding: 30px 15px;
-        }
+    /* تحسينات نهائية للهاتف */
+    @media (max-width: 768px) {
+        .nav-spacer { height: 90px; }
+        .services-header h1 { font-size: 2.2rem; }
+        .services-grid { gap: 20px; }
+        .service-card { padding: 40px 20px; }
     }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="page-wrapper">
+    <!-- الفراغ العلوي لمنع التداخل مع الأزرار الكبسولية -->
     <div class="nav-spacer"></div>
 
     <div class="services-container">
+        <!-- رأس الصفحة ممركز -->
         <header class="services-header">
             <h1>خدماتنا المتخصصة</h1>
             <p>نقدم حلولاً زراعية متكاملة تجمع بين العلم والجمال لضمان أفضل النتائج لمزارعكم وحدائقكم.</p>
@@ -148,21 +157,21 @@
             <div class="service-card">
                 <span class="service-icon">🧶</span>
                 <h3>العشب الصناعي</h3>
-                <p>توريد وتركيب العشب الصناعي.</p>
+                <p>توريد وتركيب العشب الصناعي عالي الجودة.</p>
             </div>
 
             <!-- 6 -->
             <div class="service-card">
                 <span class="service-icon">🌳</span>
                 <h3>الأشجار</h3>
-                <p>زراعة وصيانة الاشجار.</p>
+                <p>زراعة وصيانة كافة أنواع الأشجار المثمرة والزينة.</p>
             </div>
 
             <!-- 7 -->
             <div class="service-card">
                 <span class="service-icon">⛳</span>
                 <h3>المسطحات الخضراء</h3>
-                <p>صيانة جميع انواع المسطحات الخضراء.</p>
+                <p>صيانة وإدارة جميع أنواع المسطحات الخضراء.</p>
             </div>
         </div>
     </div>

@@ -5,100 +5,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}الهير الشرقية{% endblock %}</title>
+
+    <!-- خط القاهرة الفخم -->
+    <link href="https://googleapis.com" rel="stylesheet">
+
     <style>
         :root {
-            --primary: #76b82a;
-            --accent: #e30613;
-            --dark: #1a4a3a;
-            --glass: rgba(255, 255, 255, 0.98);
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --primary-dark: #1a4a3a;
+            --accent-green: #76b82a;
+            --pure-white: #ffffff;
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; transition: all 0.3s ease; }
+        * { box-sizing: border-box; scroll-behavior: smooth; transition: 0.3s; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; background: #fdfdfd;
-            color: var(--dark); text-align: center; overflow-x: hidden;
+            font-family: 'Cairo', sans-serif;
+            margin: 0; background: var(--pure-white); color: var(--primary-dark);
+            overflow-x: hidden;
         }
 
-        /* القائمة العلوية */
         .main-nav {
-            position: fixed; top: 0; left: 0; width: 100%;
-            background: var(--glass); backdrop-filter: blur(15px);
-            z-index: 9999; border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 10px 0;
-            box-shadow: var(--shadow);
+            position: fixed; top: 0; width: 100%; z-index: 10000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #f0f0f0;
+            height: 95px;
+            display: flex; align-items: center;
         }
 
         .nav-container {
-            max-width: 1200px; margin: 0 auto;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%;
+            max-width: 1400px; margin: 0 auto; width: 100%;
+            display: flex; justify-content: space-between; align-items: center; padding: 0 4%;
         }
 
-        .logo img { height: clamp(45px, 8vw, 65px); width: auto; }
-
-        /* الأزرار في الشاشات الكبيرة */
-        .nav-button-group {
-            display: flex;
-            gap: 10px;
-            align-items: center;
+        .logo-wrap img {
+            height: 80px;
+            width: auto;
+            display: block;
         }
 
-        .nav-btn {
-            text-decoration: none; color: white !important;
-            background: linear-gradient(45deg, var(--primary), var(--dark));
-            padding: 10px 18px;
-            border-radius: 12px;
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--primary-dark) !important;
+            padding: 10px 15px;
             font-weight: 700;
-            font-size: 0.9rem;
-            white-space: nowrap;
+            font-size: 1.1rem;
         }
 
-        .nav-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
-        .btn-contact { background: var(--accent) !important; }
+        .nav-link:hover { color: var(--accent-green) !important; }
 
-        /* زر القائمة للجوال (مخفي افتراضياً) */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 10px;
+        .btn-highlight {
+            background: var(--accent-green);
+            color: white !important;
+            padding: 12px 25px !important;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(118, 184, 42, 0.2);
         }
 
-        .menu-toggle span {
-            width: 25px; height: 3px; background: var(--dark); border-radius: 5px;
-        }
+        .menu-toggle { display: none; cursor: pointer; z-index: 10001; }
+        .menu-toggle span { width: 30px; height: 3px; background: var(--primary-dark); margin: 5px; display: block; transition: 0.3s; }
 
-        footer { padding: 40px 0; background: var(--dark); color: white; margin-top: 60px; font-size: 0.9rem; }
-
-        /* 📱 تنسيقات الجوال والتابلت */
+        /* 📱 تعديلات الهاتف لتعمل القائمة بكفاءة */
         @media (max-width: 992px) {
-            .menu-toggle { display: flex; }
+            .menu-toggle { display: flex; flex-direction: column; }
 
-            .nav-button-group {
-                position: absolute;
-                top: 100%; left: 0; width: 100%;
-                background: white;
+            .nav-links {
+                position: fixed;
+                top: 80px; /* تحت الشريط مباشرة */
+                right: -100%; /* مخفية خارج الشاشة */
                 flex-direction: column;
-                padding: 20px;
-                gap: 15px;
-                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-                display: none; /* مخفي حتى يتم الضغط على الزر */
+                background: white;
+                width: 100%;
+                height: auto;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transition: 0.4s ease-in-out;
+                gap: 0;
             }
 
-            .nav-button-group.active {
-                display: flex;
+            .nav-links.active {
+                right: 0; /* تظهر عند الضغط */
             }
 
-            .nav-btn {
-                width: 100%; /* الأزرار تأخذ العرض كامل في الجوال */
+            .nav-link {
+                width: 100%;
                 text-align: center;
                 padding: 15px;
-                font-size: 1.1rem;
+                border-bottom: 1px solid #f5f5f5;
             }
+
+            .btn-highlight {
+                margin: 15px auto;
+                width: 80%;
+            }
+
+            .main-nav { height: 80px; }
+            .logo-wrap img { height: 60px; }
         }
 
         {% block extra_css %}{% endblock %}
@@ -107,52 +111,37 @@
 <body>
     <nav class="main-nav">
         <div class="nav-container">
-            <div class="logo">
+            <div class="logo-wrap">
                 <a href="{% url 'home' %}">
                     <img src="{% static 'images/logo1.png' %}" alt="الهير الشرقية">
                 </a>
             </div>
 
-            <!-- زر القائمة للجوال -->
             <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
 
-            <div class="nav-button-group" id="nav-links">
-                <a href="{% url 'home' %}" class="nav-btn">الرئيسية</a>
-                <a href="/#about" class="nav-btn">من نحن</a>
-                <a href="/#projects" class="nav-btn">مشاريعنا</a>
-                <a href="{% url 'services_page' %}" class="nav-btn">خدماتنا</a>
-                <a href="/#news" class="nav-btn">الأخبار</a>
-                <a href="/#contact" class="nav-btn btn">اتصل بنا</a>
+            <div class="nav-links" id="nav-links">
+                <a href="{% url 'home' %}" class="nav-link">الرئيسية</a>
+                <a href="/#about" class="nav-link">من نحن</a>
+                <a href="{% url 'services_page' %}" class="nav-link">خدماتنا</a>
+                <a href="/#news" class="nav-link">الأخبار</a>
+                <a href="/#contact" class="nav-link btn-highlight">اتصل بنا</a>
             </div>
         </div>
     </nav>
 
-    <main>
+    <main style="padding-top: 95px;">
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 لشركة الهير الشرقية</p>
-    </footer>
-
-    <!-- سكربت بسيط لتشغيل قائمة الجوال -->
+    <!-- إضافة السكربت اللازم لتشغيل قائمة الجوال -->
     <script>
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
 
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-        });
-
-        // إغلاق القائمة عند الضغط على أي رابط
-        document.querySelectorAll('.nav-btn').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
         });
     </script>
 </body>
