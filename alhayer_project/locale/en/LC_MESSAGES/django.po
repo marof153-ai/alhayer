@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-26 23:33+0400\n"
+"POT-Creation-Date: 2026-04-26 23:45+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-#: .\main\templates\base.html:9 .\main\templates\home.html:145
+#: .\main\templates\base.html:9 .\main\templates\home.html:205
 msgid "الهير الشرقية"
 msgstr "Eastern Al hayer"
 
@@ -50,7 +50,7 @@ msgstr "News"
 msgid "اتصل بنا"
 msgstr "Contact us"
 
-#: .\main\templates\home.html:146
+#: .\main\templates\home.html:206
 msgid ""
 "نبتكر حلولاً مستدامة تجمع بين أصالة التراث الإماراتي ورؤية المستقبل الأخضر "
 "لتمكين مجتمعات حيوية في قلب الدولة."
@@ -58,41 +58,49 @@ msgstr ""
 "We create sustainable solutions that combine the authenticity of Emirati "
 "heritage with a vision for a green future to empower vibrant communities."
 
-#: .\main\templates\home.html:147
+#: .\main\templates\home.html:207
 msgid "استكشف رؤيتنا"
 msgstr "Explore our vision"
 
-#: .\main\templates\home.html:155
+#: .\main\templates\home.html:212
+msgid "آخر الأخبار"
+msgstr "News"
+
+#: .\main\templates\home.html:226
+msgid "لا توجد أخبار حالياً."
+msgstr "There is no news at the moment."
+
+#: .\main\templates\home.html:237
 msgid "تواصل معنا"
 msgstr "Explore our vision"
 
-#: .\main\templates\home.html:156
+#: .\main\templates\home.html:238
 msgid "مستعدون لتحويل أفكاركم إلى مشاريع خضراء مستدامة تفخرون بها."
 msgstr ""
 "We are ready to turn your ideas into sustainable green projects that you can "
 "be proud of."
 
-#: .\main\templates\home.html:158
+#: .\main\templates\home.html:240
 msgid "الموقع: ابوظبي، الامارات العربية المتحدة"
 msgstr "Location: Abu Dhabi, United Arab Emirates"
 
-#: .\main\templates\home.html:159
+#: .\main\templates\home.html:241
 msgid "الهاتف: 971XXXXXXXX+"
 msgstr "Phone: +971XXXXXXXX"
 
-#: .\main\templates\home.html:175
+#: .\main\templates\home.html:257
 msgid "الاسم الكامل"
 msgstr "full name"
 
-#: .\main\templates\home.html:176
+#: .\main\templates\home.html:258
 msgid "البريد الإلكتروني"
 msgstr "e-mail"
 
-#: .\main\templates\home.html:177
+#: .\main\templates\home.html:259
 msgid "كيف يمكننا مساعدتك؟"
 msgstr "How can we help you?"
 
-#: .\main\templates\home.html:184
+#: .\main\templates\home.html:266
 msgid "إرسال الاستفسار الآن"
 msgstr "Send inquiry now"
 
