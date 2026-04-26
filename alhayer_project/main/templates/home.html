@@ -1,249 +1,79 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}الرئيسية | الهير الشرقية{% endblock %}
-
-{% block extra_css %}
-<style>
-    /* 1. إعدادات الحاويات الرئيسية */
-    .page-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        background: #ffffff;
-        overflow-x: hidden;
-    }
-
-    /* 2. حاجز مسافة ديناميكي مرن للجوال */
-    .nav-spacer {
-        height: clamp(80px, 12vh, 120px);
-        width: 100%;
-    }
-
-    /* 3. تنسيق قسم الهيرو - ممركز تماماً */
-    .hero-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: clamp(40px, 10vh, 100px) 5%;
-        width: 100%;
-        background: radial-gradient(circle at center, rgba(118, 184, 42, 0.05) 0%, transparent 70%);
-    }
-
-    .hero-container h1 {
-        font-size: clamp(2.2rem, 10vw, 5.5rem);
-        font-weight: 900;
-        color: #1a4a3a;
-        margin: 0 0 20px 0;
-        line-height: 1.1;
-    }
-
-    .hero-container p {
-        font-size: clamp(1.1rem, 4vw, 1.7rem);
-        color: #444;
-        max-width: 850px;
-        line-height: 1.6;
-        margin: 0 auto 40px auto;
-    }
-
-    /* 4. زر استكشف رؤيتنا ممركز */
-    .btn-hero {
-        display: inline-block;
-        background: linear-gradient(45deg, #76b82a, #1a4a3a);
-        color: white !important;
-        padding: 18px 50px;
-        border-radius: 50px;
-        font-weight: 800;
-        font-size: clamp(1.1rem, 3vw, 1.3rem);
-        text-decoration: none;
-        box-shadow: 0 12px 30px rgba(118, 184, 42, 0.3);
-        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .btn-hero:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 15px 40px rgba(26, 74, 58, 0.4);
-    }
-
-    /* 5. قسم الأخبار */
-    .section-title {
-        font-size: clamp(2rem, 8vw, 3.5rem);
-        color: #1a4a3a;
-        margin: 60px 0 40px 0;
-        font-weight: 900;
-        text-align: center;
-    }
-
-    #news {
-        width: 100%;
-        padding: 40px 5%;
-    }
-
-    .news-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .news-card {
-        background: #fff;
-        border-radius: 25px;
-        padding: 20px;
-        box-shadow: 0 15px 45px rgba(0,0,0,0.05);
-        border: 1px solid #f0f0f0;
-        text-align: right;
-        transition: 0.3s ease;
-    }
-
-    .news-card:hover {
-        transform: translateY(-10px);
-    }
-
-    .news-img {
-        width: 100%;
-        aspect-ratio: 16/9;
-        object-fit: cover;
-        border-radius: 15px;
-        margin-bottom: 20px;
-    }
-
-    .news-body h3 {
-        font-size: 1.5rem;
-        color: #1a4a3a;
-        margin-bottom: 10px;
-    }
-
-    .news-body p {
-        font-size: 1rem;
-        color: #666;
-        line-height: 1.6;
-    }
-
-    /* 6. قسم التواصل (الاستفسارات) */
-    .contact-section {
-        width: 100%;
-        padding: 80px 5%;
-        background: #fbfdf9;
-        margin-top: 50px;
-    }
-
-    .contact-card {
-        display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        background: white;
-        border-radius: 30px;
-        overflow: hidden;
-        box-shadow: 0 30px 80px rgba(26, 74, 58, 0.1);
-        max-width: 1100px;
-        margin: 0 auto;
-    }
-
-    .info-side {
-        background: #1a4a3a;
-        color: white;
-        padding: 50px 40px;
-        text-align: right;
-    }
-
-    .form-side {
-        padding: 50px 40px;
-    }
-
-    .form-side input, .form-side textarea {
-        width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px;
-        border: 1px solid #e0e0e0; font-size: 1rem; text-align: right;
-        background: #fdfdfd; transition: 0.3s;
-    }
-
-    .submit-btn {
-        width: 100%;
-        padding: 16px;
-        background: linear-gradient(45deg, #76b82a, #1a4a3a);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        font-weight: 800;
-        font-size: 1.2rem;
-        cursor: pointer;
-    }
-
-    /* تعديلات الجوال النهائية */
-    @media (max-width: 992px) {
-        .contact-card { grid-template-columns: 1fr; }
-        .info-side, .form-side { padding: 40px 20px; text-align: center; }
-        .info-side { order: 2; } /* الفورم يظهر أولاً أو المعلومات حسب الرغبة */
-        .form-side { order: 1; }
-        .nav-spacer { height: 90px; }
-    }
-</style>
-{% endblock %}
-
 {% block content %}
-<div class="page-wrapper">
-    <!-- حاجز المسافة لمنع تداخل القائمة -->
-    <div class="nav-spacer"></div>
+<style>
+    /* هيرو ممركز */
+    .hero-section {
+        height: 85vh; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; text-align: center;
+        padding: 0 5%;
+    }
+    .hero-section h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; color: var(--p-dark); margin-bottom: 25px; }
+    .hero-section p { font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: #444; max-width: 900px; line-height: 1.6; margin-bottom: 45px; }
+    .hero-btn {
+        display: inline-block; background: linear-gradient(45deg, var(--p-light), var(--p-dark));
+        color: white !important; padding: 20px 65px; font-size: 1.4rem; font-weight: 800;
+        text-decoration: none; border-radius: 50px; box-shadow: 0 12px 35px rgba(118, 184, 42, 0.3);
+    }
 
-    <!-- قسم الهيرو الرئيسي ممركز -->
-    <header class="hero-container">
-        <h1>الهير الشرقية</h1>
-        <p>نبتكر حلولاً مستدامة تجمع بين أصالة التراث الإماراتي ورؤية المستقبل الأخضر لتمكين مجتمعات حيوية.</p>
-        <a href="#contact" class="btn-hero">استكشف رؤيتنا</a>
-    </header>
+    /* قسم التواصل: توازن تام وزر إرسال فعال */
+    .contact-container {
+        display: flex; flex-wrap: wrap; max-width: 1150px; margin: 60px auto;
+        background: white; border-radius: 30px; overflow: hidden;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.06);
+    }
+    .info-box { flex: 1; min-width: 350px; background: var(--p-dark); color: white; padding: 70px 50px; display: flex; flex-direction: column; justify-content: center; text-align: right; }
+    .form-box { flex: 1.2; min-width: 350px; padding: 70px 50px; display: flex; flex-direction: column; justify-content: center; }
 
-    <!-- قسم الأخبار -->
-    <section id="news">
-        <h2 class="section-title">آخر الأخبار</h2>
-        <div class="news-grid">
-            {% for news in news_list %}
-            <article class="news-card">
-                <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-img">
-                <div class="news-body">
-                    <h3>{{ news.title }}</h3>
-                    <p>{{ news.content }}</p>
-                </div>
-            </article>
-            {% empty %}
-                <p style="text-align: center; grid-column: 1/-1;">لا توجد أخبار حالياً.</p>
-            {% endfor %}
-        </div>
-    </section>
+    .contact-form { display: flex; flex-direction: column; gap: 15px; }
+    .contact-form input, .contact-form textarea { width: 100%; padding: 16px; border: 1px solid #eee; border-radius: 12px; font-family: inherit; text-align: right; font-size: 1rem; }
+    .contact-form textarea { min-height: 160px; resize: none; }
 
-    <!-- قسم التواصل (الاستفسارات) -->
-    <section id="contact" class="contact-section">
-        <div class="contact-card">
-            <!-- جانب المعلومات -->
-            <div class="info-side">
-                <h2 style="font-size: 2.2rem; margin-bottom: 20px;">تواصل معنا</h2>
-                <p style="font-size: 1.1rem; line-height: 1.8;">نحن هنا للإجابة على جميع استفساراتكم وتحويل أفكاركم إلى مشاريع خضراء.</p>
-                <div style="margin-top: 40px; font-size: 1rem; line-height: 2.5;">
-                    <p>📍 الموقع: ابوظبي، الامارات العربية المتحدة</p>
-                    <p>📞 الهاتف: 971XXXXXXXX+</p>
-                </div>
-            </div>
+    .sub-btn {
+        width: 100%; padding: 20px; background: var(--p-light); color: white;
+        border: none; border-radius: 12px; font-weight: 900; font-size: 1.2rem;
+        cursor: pointer; transition: 0.3s;
+    }
+    .sub-btn:hover { background: var(--p-dark); transform: translateY(-3px); }
 
-            <!-- جانب النموذج -->
-            <div class="form-side">
-                {% if messages %}
-                    {% for message in messages %}
-                        <div style="padding: 15px; margin-bottom: 20px; border-radius: 10px; background-color: #e8f5e9; color: #2e7d32; text-align: center; font-weight: bold; animation: fadeIn 0.5s;">
-                            ✅ {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
+    @media (max-width: 992px) { .contact-container { flex-direction: column; } .hero-section { height: auto; padding: 120px 5% 80px 5%; } }
+</style>
 
-                <form method="POST">
-                    {% csrf_token %}
-                    <input type="text" name="name" placeholder="الاسم الكامل" required>
-                    <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-                    <textarea name="message" rows="4" placeholder="كيف يمكننا مساعدتك؟" required></textarea>
-                    <button type="submit" class="submit-btn">إرسال الرسالة</button>
-                </form>
-            </div>
-        </div>
-    </section>
+<div class="hero-section">
+    <h1>الهير الشرقية</h1>
+    <p>نبتكر حلولاً مستدامة تجمع بين أصالة التراث الإماراتي ورؤية المستقبل الأخضر لتمكين مجتمعات حيوية.</p>
+    <a href="#contact" class="hero-btn">استكشف رؤيتنا</a>
 </div>
+
+<section id="contact" style="padding: 80px 5%; background: #fbfdf9;">
+    <div class="contact-container">
+        <div class="info-box">
+            <h2 style="font-size: 2.8rem; margin-bottom: 25px; font-weight: 900;">تواصل معنا</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; opacity: 0.9;">مستعدون لتحويل أفكاركم إلى مشاريع خضراء مستدامة تفخرون بها.</p>
+            <div style="margin-top: 45px; line-height: 2.5; font-size: 1.1rem;">
+                <p>📍 الموقع: ابوظبي، الامارات العربية المتحدة</p>
+                <p>📞 الهاتف: 971XXXXXXXX+</p>
+            </div>
+        </div>
+        <div class="form-box">
+            {% if messages %}
+                {% for message in messages %}
+                    <div style="padding: 15px; margin-bottom: 20px; border-radius: 12px; background: #e8f5e9; color: #2e7d32; text-align: center; font-weight: bold;">
+                        ✅ {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- تأكد من وجود type="submit" للزر داخل الفورم ليعمل الإرسال -->
+            <form method="POST" action="." class="contact-form">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="الاسم الكامل" required>
+                <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+                <textarea name="message" placeholder="كيف يمكننا مساعدتك؟" required></textarea>
+                <button type="submit" class="sub-btn">إرسال الاستفسار الآن</button>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}
