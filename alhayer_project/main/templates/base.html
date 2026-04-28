@@ -252,6 +252,23 @@ document.addEventListener("DOMContentLoaded", function() {
             h1.classList.add('show-title');
         }, 150);
     }
+    // أضف هذا الجزء داخل دالة DOMContentLoaded
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // تفعيل حركة السقوط لكل البطاقات
+            document.querySelectorAll('.stat-card').forEach(card => {
+                card.classList.add('drop-active');
+            });
+            // تشغيل العداد (الدالة التي برمجناها سابقاً)
+            startCounters();
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+
+const statsSection = document.querySelector('.stats-cards-container');
+if (statsSection) statsObserver.observe(statsSection);
 
     // --- 🟢 ثانياً: تشغيل القائمة الجانبية (Sidebar) ---
     if (menuBtn && navLinks) {

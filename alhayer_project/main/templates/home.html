@@ -9,20 +9,23 @@
     <p style="font-size: 1.2rem; color: #444; max-width: 800px; margin-bottom: 40px; font-weight: 700;">{% translate "نبتكر حلولاً مستدامة تجمع بين أصالة التراث الإماراتي ورؤية المستقبل الأخضر." %}</p>
     <a href="{% url 'about' %}" class="nav-cta" style="margin:0; padding: 18px 60px; text-decoration: none; background: #2d5a27; color: white; border-radius: 50px; font-weight: 900; display: inline-block;">{% translate "استكشف رؤيتنا" %}</a>
 </section>
-<section class="stats-section">
-    <div class="stat-item">
+<section class="stats-cards-container">
+    <div class="stat-card" style="--delay: 0.1s">
         <h2 class="counter-num" data-target="200">0</h2>
         <p>{% translate "مشروع منجز" %}</p>
     </div>
-    <div class="stat-item">
+
+    <div class="stat-card" style="--delay: 0.3s">
         <h2 class="counter-num" data-target="15">0</h2>
         <p>{% translate "سنة خبرة" %}</p>
     </div>
-    <div class="stat-item">
+
+    <div class="stat-card" style="--delay: 0.5s">
         <h2 class="counter-num" data-target="150">0</h2>
         <p>{% translate "عميل سعيد" %}</p>
     </div>
 </section>
+
 
 <!-- 📰 2. قسم الأخبار (News Section) -->
 <section id="news" class="news-section" style="padding: 80px 5%; background: white;">
