@@ -4,12 +4,20 @@
 
 {% block content %}
 <!-- 🌿 1. قسم الهيرو (Hero Section) -->
-<section class="hero-section" style="min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.85)), url('https://unsplash.com') center/cover;">
-    <h1 style="font-weight: 900; color: #2d5a27; margin-bottom: 20px;">{% translate "نصنع الحياة الخضراء" %}</h1>
-    <p style="font-size: 1.2rem; color: #444; max-width: 800px; margin-bottom: 40px; font-weight: 700;">{% translate "نبتكر حلولاً مستدامة تجمع بين أصالة التراث الإماراتي ورؤية المستقبل الأخضر." %}</p>
-    <a href="{% url 'about' %}" class="nav-cta" style="margin:0; padding: 18px 60px; text-decoration: none; background: #2d5a27; color: white; border-radius: 50px; font-weight: 900; display: inline-block;">{% translate "استكشف رؤيتنا" %}</a>
+<!-- 🌿 1. قسم الهيرو (Hero Section) -->
+<section class="hero-section">
+    <!-- العنوان سيسقط بجمالية فوق الصورة الثابتة بفضل ملف الـ CSS والـ JS -->
+    <h1>{% translate "نصنع الحياة الخضراء." %}</h1>
+
+    <p>{% translate "نبتكر حلولاً مستدامة تجمع بين أصالة التراث الإماراتي ورؤية المستقبل الأخضر." %}</p>
+
+   <!-- <a href="#contact" class="nav-cta" style="margin:0; padding: 18px 60px; font-size: 1.1rem;">
+        {% translate "استكشف رؤيتنا" %}
+    </a>  -->
 </section>
+
 <section class="stats-cards-container">
+
     <div class="stat-card" style="--delay: 0.1s">
         <h2 class="counter-num" data-target="200">0</h2>
         <p>{% translate "مشروع منجز" %}</p>

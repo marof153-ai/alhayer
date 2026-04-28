@@ -67,21 +67,64 @@ body {
 
 /* 🌿 الهيرو الرئيسي - Hero */
 .hero-section {
-    min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 60px 5%;
-    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.85)),
-                url('https://unsplash.com') center/cover;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 5%;
+
+    /* الصورة من كلاوديناري */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+                      url('https://res.cloudinary.com/diivuvc0h/image/upload/v1777386007/SpringGreenVibrantBackgroundGreenGrassPhotoBackdropIBD-19970_gqdeut.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    /* 🟢 السر في الحواف الأنيقة هنا */
+    margin: 15px; /* ترك مسافة بسيطة عن أطراف الشاشة لمظهر "كارت" فخم */
+    border-radius: 40px; /* زوايا دائرية ناعمة */
+
+    /* تأثير اختياري: قص الحافة السفلية بشكل قوسي بسيط */
+    clip-path: ellipse(150% 100% at 50% 0%);
+
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.2); /* ظل داخلي للعمق */
+    position: relative;
+    overflow: hidden;
 }
 
-h1 {
-    font-family: 'Almarai', sans-serif !important;
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    font-weight: 900; color: var(--p-calm-green); margin-bottom: 25px;
-    opacity: 0; transform: translateY(-80px); /* السقوط */
+/* 🟢 تعديل ألوان النص ليبرز فوق الصورة المظلمة */
+.hero-section h1 {
+    color: #ffffff !important; /* النص أبيض ليظهر بوضوح */
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5); /* ظل للنص لزيادة الفخامة */
+    margin-bottom: 20px;
 }
 
-h1.show-title { opacity: 1; transform: translateY(0); transition: 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.hero-section p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1.3rem;
+    font-weight: 700;
+    max-width: 800px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+     margin-bottom: 80px;
+}
 
+@media (max-width: 768px) {
+    .hero-section {
+        background-attachment: scroll; /* نلغي الثبات في الموبايل لضمان السلاسة */
+        min-height: 70vh;
+    }
+}
+background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(;
+@media (max-width: 768px) {
+    .hero-section {
+        margin: 10px;
+        border-radius: 30px;
+        background-attachment: scroll; /* لضمان الأداء السلس في الموبايل */
+        min-height: 75vh;
+    }
+}
 /* 📊 قسم الإحصائيات (الهوية البصرية) */
 .stats-section {
     display: flex; justify-content: space-around; flex-wrap: wrap;
