@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-28 16:59+0400\n"
+"POT-Creation-Date: 2026-04-28 18:33+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,7 +126,7 @@ msgstr ""
 msgid "روابط سريعة"
 msgstr "Quick links"
 
-#: .\main\templates\base.html:224 .\main\templates\home.html:62
+#: .\main\templates\base.html:224 .\main\templates\home.html:73
 msgid "تواصل معنا"
 msgstr "Contact us"
 
@@ -144,64 +144,65 @@ msgstr ""
 "See how we transformed empty spaces into green paradises overflowing with "
 "life."
 
-#: .\main\templates\home.html:8
-msgid "نصنع الحياة الخضراء"
+#: .\main\templates\home.html:10
+
+msgid "نصنع الحياة الخضراء."
 msgstr "We create green living"
 
-#: .\main\templates\home.html:9
+#: .\main\templates\home.html:12
 msgid ""
 "نبتكر حلولاً مستدامة تجمع بين أصالة التراث الإماراتي ورؤية المستقبل الأخضر."
 msgstr ""
 "We create sustainable solutions that combine the authenticity of Emirati "
 "heritage with a vision for a green future to empower vibrant communities."
 
-#: .\main\templates\home.html:10
+#: .\main\templates\home.html:15
 msgid "استكشف رؤيتنا"
 msgstr "Explore our vision"
 
-#: .\main\templates\home.html:15
+#: .\main\templates\home.html:23
 msgid "مشروع منجز"
 msgstr "Completed project"
 
-#: .\main\templates\home.html:19
+#: .\main\templates\home.html:28
 msgid "سنة خبرة"
 msgstr "One year of experience"
 
-#: .\main\templates\home.html:23
+#: .\main\templates\home.html:33
 msgid "عميل سعيد"
 msgstr "Happy customer"
 
-#: .\main\templates\home.html:29
+#: .\main\templates\home.html:40
 msgid "آخر الأخبار والمشاريع"
 msgstr "News"
 
-#: .\main\templates\home.html:40
+#: .\main\templates\home.html:51
 msgid "لا توجد أخبار حالياً."
 msgstr "There is no news at the moment."
 
-#: .\main\templates\home.html:64
+#: .\main\templates\home.html:75
 msgid "مستعدون لتحويل أفكاركم إلى مشاريع خضراء مستدامة تفخرون بها."
 msgstr ""
 "We are ready to turn your ideas into sustainable green projects that you can "
 "be proud of."
 
-#: .\main\templates\home.html:70
+#: .\main\templates\home.html:81
 msgid "العين، الإمارات العربية المتحدة"
 msgstr "Location: Abu Dhabi, United Arab Emirates"
 
-#: .\main\templates\home.html:86
+#: .\main\templates\home.html:97
 msgid "الاسم"
 msgstr "full name"
 
-#: .\main\templates\home.html:89
+#: .\main\templates\home.html:100
 msgid "البريد"
 msgstr "E-mail"
 
-#: .\main\templates\home.html:93
+#: .\main\templates\home.html:104
 msgid "كيف يمكننا مساعدتك؟"
 msgstr "How can we help you?"
 
-#: .\main\templates\home.html:97
+#: .\main\templates\home.html:108
 msgid "إرسال الاستفسار الآن"
 msgstr "Send inquiry now"
 
@@ -290,7 +291,6 @@ msgstr ""
 "freshness throughout the year."
 
 #: .\main\templates\services.html:88
-
 msgid "تواصل معنا لطلب الخدمة "
 msgstr "Contact us to request the service"
 
