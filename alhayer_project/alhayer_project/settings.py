@@ -34,20 +34,23 @@ ALLOWED_HOSTS = ['alhayereastern.com', 'www.alhayereastern.com', '://onrender.co
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',  # يجب أن تكون في البداية
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',  # يجب أن تكون قبل staticfiles
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'main',
     'cloudinary',
-
+    'rest_framework', # أضف الفاصلة هنا
+    'corsheaders',     # وتأكد من وجودها هنا أيضاً
 ]
 
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -191,6 +194,6 @@ if os.environ.get('DATABASE_URL'):
     )
 if os.environ.get('CLOUDINARY_CLOUD_NAME'):
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 

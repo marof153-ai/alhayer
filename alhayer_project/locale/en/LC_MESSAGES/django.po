@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-26 23:45+0400\n"
+"POT-Creation-Date: 2026-04-28 14:34+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,101 +18,200 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\alhayer_project\settings.py:159
+#: .\alhayer_project\settings.py:162
 msgid "Arabic"
 msgstr ""
 
-#: .\alhayer_project\settings.py:160
+#: .\alhayer_project\settings.py:163
 msgid "English"
 msgstr ""
 
-#: .\main\templates\base.html:9 .\main\templates\home.html:205
-msgid "الهير الشرقية"
-msgstr "Eastern Al hayer"
+#: .\main\templates\about.html:5
+#, fuzzy
+#| msgid "خدماتنا المتخصصة | الهير الشرقية"
+msgid "من نحن | رؤيتنا وقصتنا - الهير الشرقية"
+msgstr "Our Services | Eastern Al hayer"
 
-#: .\main\templates\base.html:120
-msgid "الرئيسية"
-msgstr "Home"
-
-#: .\main\templates\base.html:121
+#: .\main\templates\about.html:11 .\main\templates\base.html:170
 msgid "من نحن"
 msgstr "About Us"
 
-#: .\main\templates\base.html:122
+#: .\main\templates\about.html:13
+msgid "قصة شغف بدأت من أعماق الطبيعة لتصنع لك واحة من الجمال والراحة."
+msgstr "A story of passion that began deep within nature to create an oasis of beauty and comfort for you."
+
+#: .\main\templates\about.html:20
+msgid "رؤيتنا وقيمنا"
+msgstr "Our vision and values"
+
+#: .\main\templates\about.html:22
+msgid ""
+"في الهير الشرقية، نحن لا ننسق الحدائق فحسب، بل نصمم تجارب حياة. انطلقنا من "
+"مدينة العين برؤية تهدف إلى دمج الأصالة الإماراتية بأحدث تقنيات الزراعة والري "
+"المستدام. نحن نؤمن أن كل مساحة خضراء هي رئة جديدة للمكان، ونلتزم بتقديم أعلى "
+"معايير الجودة لضمان ديمومة وجمال مزارعكم وحدائقكم."
+msgstr "At Al Heer East, we don't just landscape gardens, we design life experiences. We started from"
+"Al Ain city has a vision that aims to integrate Emirati heritage with the latest agricultural and irrigation technologies."
+"Sustainable. We believe that every green space is a new lung for the place, and we are committed to providing the highest quality."
+"Quality standards to ensure the longevity and beauty of your farms and gardens."
+#: .\main\templates\about.html:33
+msgid "لماذا يختارنا العملاء؟"
+msgstr "Why do customers choose us?"
+
+#: .\main\templates\about.html:39
+#, fuzzy
+#| msgid "آخر الأخبار والمشاريع"
+msgid "الخبرة والضمان"
+msgstr "News"
+
+#: .\main\templates\about.html:40
+msgid "نقدم ضمانات حقيقية على كافة أعمال التنفيذ والصيانة."
+msgstr "We offer genuine guarantees on all execution and maintenance work."
+
+#: .\main\templates\about.html:45
+msgid "سرعة التنفيذ"
+msgstr "Speed of execution"
+
+#: .\main\templates\about.html:46
+msgid "نلتزم بالجداول الزمنية بدقة متناهية مع الحفاظ على الجودة."
+msgstr "We adhere to schedules with utmost precision while maintaining quality."
+
+#: .\main\templates\about.html:51
+msgid "دعم فني مستمر"
+msgstr "Ongoing technical support"
+
+#: .\main\templates\about.html:52
+msgid "فريقنا معك دائماً للاستشارة والمتابعة بعد انتهاء المشروع."
+msgstr "Our team is always with you for consultation and follow-up after the project is completed."
+
+#: .\main\templates\base.html:10 .\main\templates\base.html:191
+#: .\main\templates\base.html:233
+msgid "الهير الشرقية"
+msgstr "Eastern Al hayer"
+
+#: .\main\templates\base.html:169 .\main\templates\base.html:217
+msgid "الرئيسية"
+msgstr "Home"
+
+#: .\main\templates\base.html:171 .\main\templates\base.html:218
 msgid "خدماتنا"
 msgstr "Our services"
 
-#: .\main\templates\base.html:123
+#: .\main\templates\base.html:172 .\main\templates\gallery.html:11
+
+msgid "واحاتنا"
+msgstr "Our oases"
+
+#: .\main\templates\base.html:173
 msgid "الأخبار"
 msgstr "News"
 
-#: .\main\templates\base.html:124
+#: .\main\templates\base.html:174
 msgid "اتصل بنا"
 msgstr "Contact us"
 
-#: .\main\templates\home.html:206
+#: .\main\templates\base.html:193
 msgid ""
-"نبتكر حلولاً مستدامة تجمع بين أصالة التراث الإماراتي ورؤية المستقبل الأخضر "
-"لتمكين مجتمعات حيوية في قلب الدولة."
+"نؤمن بأن الحديقة هي روح المكان، نسخر خبراتنا لتنسيق مساحات خضراء تفيض "
+"بالجمال."
+msgstr "We believe that the garden is the soul of a place; we use our expertise to design lush green spaces."
+"With beauty."
+#: .\main\templates\base.html:215
+msgid "روابط سريعة"
+msgstr "Quick links"
+
+#: .\main\templates\base.html:224 .\main\templates\home.html:62
+msgid "تواصل معنا"
+msgstr "Explore our vision"
+
+#: .\main\templates\base.html:226
+
+msgid "ابوظبي، الإمارات العربية المتحدة"
+msgstr "Location: Abu Dhabi, United Arab Emirates"
+
+#: .\main\templates\gallery.html:5
+
+msgid "واحاتنا | معرض مشاريعنا الخضراء"
+msgstr "Our Oases | Our Green Projects Exhibition"
+
+#: .\main\templates\gallery.html:13
+msgid "شاهد كيف حولنا المساحات الخالية إلى جنات خضراء تفيض بالحياة."
+msgstr "See how we transformed empty spaces into green paradises overflowing with life."
+
+#: .\main\templates\home.html:8
+
+msgid "نصنع الحياة الخضراء"
+msgstr "We create green living"
+
+#: .\main\templates\home.html:9
+
+msgid ""
+"نبتكر حلولاً مستدامة تجمع بين أصالة التراث الإماراتي ورؤية المستقبل الأخضر."
 msgstr ""
 "We create sustainable solutions that combine the authenticity of Emirati "
 "heritage with a vision for a green future to empower vibrant communities."
 
-#: .\main\templates\home.html:207
+#: .\main\templates\home.html:10
 msgid "استكشف رؤيتنا"
 msgstr "Explore our vision"
 
-#: .\main\templates\home.html:212
-msgid "آخر الأخبار"
+#: .\main\templates\home.html:15
+msgid "مشروع منجز"
+msgstr "Completed project"
+
+#: .\main\templates\home.html:19
+msgid "سنة خبرة"
+msgstr "One year of experience"
+
+#: .\main\templates\home.html:23
+msgid "عميل سعيد"
+msgstr "Happy customer"
+
+#: .\main\templates\home.html:29
+msgid "آخر الأخبار والمشاريع"
 msgstr "News"
 
-#: .\main\templates\home.html:226
+#: .\main\templates\home.html:40
 msgid "لا توجد أخبار حالياً."
 msgstr "There is no news at the moment."
 
-#: .\main\templates\home.html:237
-msgid "تواصل معنا"
-msgstr "Explore our vision"
-
-#: .\main\templates\home.html:238
+#: .\main\templates\home.html:64
 msgid "مستعدون لتحويل أفكاركم إلى مشاريع خضراء مستدامة تفخرون بها."
 msgstr ""
 "We are ready to turn your ideas into sustainable green projects that you can "
 "be proud of."
 
-#: .\main\templates\home.html:240
-msgid "الموقع: ابوظبي، الامارات العربية المتحدة"
+#: .\main\templates\home.html:70
+
+msgid "العين، الإمارات العربية المتحدة"
 msgstr "Location: Abu Dhabi, United Arab Emirates"
 
-#: .\main\templates\home.html:241
-msgid "الهاتف: 971XXXXXXXX+"
-msgstr "Phone: +971XXXXXXXX"
+#: .\main\templates\home.html:86
 
-#: .\main\templates\home.html:257
-msgid "الاسم الكامل"
+msgid "الاسم"
 msgstr "full name"
 
-#: .\main\templates\home.html:258
-msgid "البريد الإلكتروني"
-msgstr "e-mail"
+#: .\main\templates\home.html:89
+msgid "البريد"
+msgstr "E-mail"
 
-#: .\main\templates\home.html:259
+#: .\main\templates\home.html:93
 msgid "كيف يمكننا مساعدتك؟"
 msgstr "How can we help you?"
 
-#: .\main\templates\home.html:266
+#: .\main\templates\home.html:97
 msgid "إرسال الاستفسار الآن"
 msgstr "Send inquiry now"
 
 #: .\main\templates\services.html:5
-msgid "خدماتنا | الهير الشرقية"
+msgid "خدماتنا المتخصصة | الهير الشرقية"
 msgstr "Our Services | Eastern Al hayer"
 
-#: .\main\templates\services.html:103
+#: .\main\templates\services.html:11
 msgid "خدماتنا المتخصصة"
 msgstr "Our specialized services"
 
-#: .\main\templates\services.html:104
+#: .\main\templates\services.html:14
 msgid ""
 "نقدم حلولاً زراعية متكاملة تجمع بين العلم والجمال لضمان أفضل النتائج لمزارعكم "
 "وحدائقكم."
@@ -120,78 +219,88 @@ msgstr ""
 "We offer integrated agricultural solutions that combine science and beauty "
 "to ensure the best results for your farms and gardens."
 
-#: .\main\templates\services.html:112
+#: .\main\templates\services.html:26
 msgid "تصميم الحدائق"
 msgstr "Garden design"
 
-#: .\main\templates\services.html:113
-msgid "ابتكار مخططات تحول مساحاتكم إلى لوحات فنية طبيعية."
+#: .\main\templates\services.html:27
+msgid "ابتكار مخططات تحول مساحاتكم إلى لوحات فنية طبيعية فريدة."
 msgstr "Create plans that transform your spaces into natural works of art."
 
-#: .\main\templates\services.html:118
+#: .\main\templates\services.html:35
 msgid "تنفيذ الحدائق"
 msgstr "Garden implementation"
 
-#: .\main\templates\services.html:119
+#: .\main\templates\services.html:36
 msgid "بناء وتنسيق المواقع بأعلى معايير الجودة وبإشراف مهندسين متخصصين."
 msgstr ""
 "Building and landscaping sites to the highest quality standards under the "
 "supervision of specialized engineers."
 
-#: .\main\templates\services.html:124
+#: .\main\templates\services.html:44
 msgid "أنظمة الري"
 msgstr "Irrigation systems"
 
-#: .\main\templates\services.html:125
+#: .\main\templates\services.html:45
 msgid "تركيب وصيانة تقنيات الري الحديثة لترشيد الاستهلاك وضمان صحة النباتات."
 msgstr ""
 "Installation and maintenance of modern irrigation technologies to "
 "rationalize consumption and ensure plant health."
 
-#: .\main\templates\services.html:130
+#: .\main\templates\services.html:53
 msgid "العشب الطبيعي"
 msgstr "natural grass"
 
-#: .\main\templates\services.html:131
+#: .\main\templates\services.html:54
 msgid "توريد وتركيب أجود أنواع العشب الطبيعي المتلائم مع بيئة الإمارات."
 msgstr ""
 "Supply and installation of the finest types of natural grass that are "
 "compatible with the UAE environment."
 
-#: .\main\templates\services.html:136
+#: .\main\templates\services.html:62
 msgid "العشب الصناعي"
 msgstr "artificial grass"
 
-#: .\main\templates\services.html:137
+#: .\main\templates\services.html:63
 msgid "توريد وتركيب العشب الصناعي عالي الجودة بمظهر طبيعي ودوام طويل."
 msgstr ""
 "Supply and installation of high-quality artificial grass with a natural look "
 "and long durability."
 
-#: .\main\templates\services.html:142
+#: .\main\templates\services.html:71
 msgid "الأشجار"
 msgstr "trees"
 
-#: .\main\templates\services.html:143
+#: .\main\templates\services.html:72
 msgid "زراعة وصيانة كافة أنواع الأشجار المثمرة وأشجار الزينة بأسلوب علمي."
 msgstr ""
 "Planting and maintaining all types of fruit trees and ornamental trees using "
 "a scientific method."
 
-#: .\main\templates\services.html:148
+#: .\main\templates\services.html:80
 msgid "المسطحات الخضراء"
-msgstr "Planting and maintaining all types of fruit and ornamental trees."
+msgstr "green spaces"
 
-#: .\main\templates\services.html:149
+#: .\main\templates\services.html:81
 msgid "صيانة شاملة للمسطحات الخضراء والملاعب لضمان نضارتها طوال العام."
 msgstr ""
 "Comprehensive maintenance of green spaces and playgrounds to ensure their "
 "freshness throughout the year."
 
-#: .\main\views.py:16
+#: .\main\templates\services.html:88
+msgid "العودة للرئيسية"
+msgstr "Home"
+
+#: .\main\views.py:19
 #, python-format
 msgid "شكراً لك يا %(name)s، تم استلام رسالتك بنجاح!"
 msgstr "Thank you %(name)s, your message has been received successfully!"
+
+#~ msgid "البريد الإلكتروني"
+#~ msgstr "e-mail"
+
+#~ msgid "الهاتف: 971XXXXXXXX+"
+#~ msgstr "Phone: +971XXXXXXXX"
 
 #~ msgid "صيانة وإدارة جميع أنواع المسطحات الخضراء."
 #~ msgstr "Maintenance and management of all types of green spaces."

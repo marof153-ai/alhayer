@@ -4,149 +4,349 @@
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'en' %}ltr{% else %}rtl{% endif %}">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{% block title %}{% translate "الهير الشرقية" %}{% endblock %}</title>
 
-    <!-- خط القاهرة -->
-    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- الخطوط الاحترافية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- ملف CSS الأساسي -->
+    <link rel="stylesheet" href="{% static 'css/main_style.css' %}?v=1.2">
 
     <style>
-        :root {
-            --p-calm-green: #2d5a27;
-            --p-hover-green: #3d7a35;
-            --white: #ffffff;
-        }
-
+        :root { --p-green: #2d5a27; --text-dark: #1a1a1a; }
         * { box-sizing: border-box; margin: 0; padding: 0; transition: 0.3s ease; }
+        body { font-family: 'Cairo', sans-serif; background: #ffffff; padding-top: 85px; overflow-x: hidden; scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: var(--white);
-            overflow-x: hidden;
-            padding-top: 95px; /* مسافة لضمان عدم اختفاء المحتوى تحت القائمة */
-        }
-
-        /* 🟢 القائمة العلوية الثابتة */
-        .main-nav {
-            position: fixed; top: 0; width: 100%; z-index: 10000;
-            background: var(--white);
-            height: 95px;
-            display: flex; align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            border-bottom: 3px solid var(--p-calm-green);
-        }
-
-        .nav-container {
-            max-width: 1400px; margin: 0 auto; width: 100%;
-            display: flex; justify-content: space-between; align-items: center; padding: 0 4%;
-            /* تبديل الاتجاه حسب اللغة */
-            flex-direction: row;
-        }
-
-        /* اللوجو يمين في العربي / يسار في الإنجليزي */
-        .logo-wrap img { height: 75px; width: auto; display: block; }
-
-        /* الأزرار يسار في العربي / يمين في الإنجليزي */
+        /* 🧭 القائمة العلوية الذكية */
+        .main-nav { position: fixed; top: 0; width: 100%; z-index: 10000; background: white; height: 85px; display: flex; align-items: center; border-bottom: 2px solid #f0f5ee; transition: 0.4s all ease; }
+        .nav-container { max-width: 1400px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; }
+        .logo-wrap img { height: 60px; }
         .nav-links { display: flex; gap: 10px; align-items: center; }
+        .nav-link { text-decoration: none; color: var(--text-dark); padding: 10px 15px; font-weight: 700; border-radius: 12px; }
+        .nav-link:hover { color: var(--p-green); background: #f8faf7; }
+        .nav-cta { text-decoration: none; background: var(--p-green); color: white !important; padding: 12px 25px; border-radius: 50px; font-weight: 900; margin-inline-start: 15px; box-shadow: 0 10px 20px rgba(45, 90, 39, 0.15); }
 
-        .nav-btn {
-            text-decoration: none;
-            color: white !important;
-            background: var(--p-calm-green);
-            padding: 10px 22px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            white-space: nowrap;
-        }
+        /* 🎬 حركة السقوط للعنوان الرئيسي */
+        h1 { font-family: 'Almarai', sans-serif !important; opacity: 0; transform: translateY(-80px); transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        h1.show-title { opacity: 1; transform: translateY(0); }
 
-        .nav-btn:hover {
-            background: var(--p-hover-green);
-            transform: translateY(-2px);
-        }
+        /* 🏁 الفوتر المنسق */
+       /* 🏁 التذييل الأسود الزجاجي المطور */
+.main-footer {
+    background: rgba(26, 26, 26, 0.95); /* أسود داكن بلمسة شفافية */
+    backdrop-filter: blur(15px);         /* تأثير الزجاج الضبابي */
+    -webkit-backdrop-filter: blur(15px);
+    color: #ffffff;                      /* لون النص أبيض للتباين */
+    padding: 70px 8% 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 50px;
+}
 
-        .lang-switch {
-            text-decoration: none;
-            color: var(--p-calm-green) !important;
-            border: 1px solid var(--p-calm-green);
-            padding: 8px 15px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    text-align: right;
+}
 
+.footer-title {
+    color: #8ec045; /* استخدام اللون الأخضر الفاتح للعناوين ليبرز على الأسود */
+    font-weight: 900;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    display: block;
+    font-family: 'Almarai', sans-serif !important;
+}
+
+.footer-links {
+    list-style: none !important;
+    padding: 0 !important;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #cccccc; /* رمادي فاتح للنصوص العادية */
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #cccccc;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #8ec045; /* تحول اللون للأخضر عند التحويم */
+    padding-inline-start: 8px; /* حركة انزلاق بسيطة */
+}
+
+/* أيقونات السوشال ميديا */
+.social-icons {
+    display: flex !important;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.social-icon {
+    width: 40px; height: 40px;
+    background: rgba(255, 255, 255, 0.05); /* خلفية داكنة جداً للأيقونة */
+    color: #ffffff !important;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icon:hover {
+    background: #2d5a27;
+    border-color: #8ec045;
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 600;
+}
+
+
+        /* الجوال */
         .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-        .menu-toggle span { width: 28px; height: 3px; background: var(--p-calm-green); border-radius: 2px; }
-
-        /* 📱 تنسيق الجوال */
+        .menu-toggle span { width: 28px; height: 3px; background: var(--p-green); }
         @media (max-width: 992px) {
             .menu-toggle { display: flex; }
-            .nav-links {
-                position: fixed; top: 90px; right: -100%; width: 100%;
-                background: white; flex-direction: column; padding: 30px;
-                gap: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); display: flex;
-            }
+            .nav-links { position: fixed; top: 85px; right: -100%; width: 100%; background: white; flex-direction: column; padding: 40px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
             .nav-links.active { right: 0; }
-            .nav-btn, .lang-switch { width: 100%; text-align: center; }
         }
+        @media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        top: 0; /* نجعلها تبدأ من أعلى الشاشة تماماً لمظهر أجمل */
+        right: 0;
+        width: 75%; /* ⬅️ هنا السر: تأخذ 75% من عرض الشاشة فقط */
+        height: 100vh; /* تأخذ طول الشاشة بالكامل */
+        background: white;
+        flex-direction: column;
+        padding: 80px 40px; /* مساحة علوية للسماح برؤية زر الإغلاق */
 
-        .whatsapp-btn {
-            position: fixed; bottom: 25px; left: 25px; z-index: 9999;
-            background: #25d366; width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
+        /* حركة الانزلاق السريع */
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1); /* ظل خفيف لتمييزها عن باقي الصفحة */
+        z-index: 9999;
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+    }
+}
+
     </style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>
     <nav class="main-nav">
         <div class="nav-container">
-            <!-- اللوجو -->
             <div class="logo-wrap">
-                <a href="/{{ LANGUAGE_CODE }}/">
-                    <img src="{% static 'images/logo1.png' %}" alt="Logo">
-                </a>
+                <a href="{% url 'home' %}"><img src="{% static 'images/logo1.png' %}" alt="Logo"></a>
             </div>
-
-            <!-- زر الجوال -->
             <div class="menu-toggle" id="mobile-menu">
                 <span></span><span></span><span></span>
             </div>
-
-            <!-- الروابط -->
             <div class="nav-links" id="nav-links">
-                <a href="{% url 'home' %}" class="nav-btn">{% translate "الرئيسية" %}</a>
-                <a href="/{{ LANGUAGE_CODE }}/#about" class="nav-btn">{% translate "من نحن" %}</a>
-                <a href="{% url 'services_page' %}" class="nav-btn">{% translate "خدماتنا" %}</a>
-                <a href="/{{ LANGUAGE_CODE }}/#news" class="nav-btn">{% translate "الأخبار" %}</a>
-                <a href="/{{ LANGUAGE_CODE }}/#contact" class="nav-btn">{% translate "اتصل بنا" %}</a>
-
+                <a href="{% url 'home' %}" class="nav-link">{% translate "الرئيسية" %}</a>
+                <a href="{% url 'about' %}" class="nav-link">{% translate "من نحن" %}</a>
+                <a href="{% url 'services' %}" class="nav-link">{% translate "خدماتنا" %}</a>
+                <a href="{% url 'gallery' %}" class="nav-link">{% translate "واحاتنا" %}</a>
+                <a href="{% url 'home' %}#news" class="nav-link">{% translate "الأخبار" %}</a>
+                <a href="{% url 'home' %}#contact" class="nav-cta">{% translate "اتصل بنا" %}</a>
                 {% if LANGUAGE_CODE == 'ar' %}
-                    <a href="/en{{ request.get_full_path|slice:'3:' }}" class="lang-switch">English</a>
+                    <a href="/en{{ request.get_full_path|slice:'3:' }}" style="text-decoration:none; color:var(--p-green); font-weight:bold; border:1.5px solid var(--p-green); padding:5px 12px; border-radius:10px;">English</a>
                 {% else %}
-                    <a href="/ar{{ request.get_full_path|slice:'3:' }}" class="lang-switch">العربية</a>
+                    <a href="/ar{{ request.get_full_path|slice:'3:' }}" style="text-decoration:none; color:var(--p-green); font-weight:bold; border:1.5px solid var(--p-green); padding:5px 12px; border-radius:10px;">العربية</a>
                 {% endif %}
             </div>
         </div>
     </nav>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    <main>{% block content %}{% endblock %}</main>
 
-    <a href="https://wa.me" class="whatsapp-btn" target="_blank">
-        <svg viewBox="0 0 448 512" width="30" height="30" fill="white"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.6-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.5-11.3 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 34.9 2.2 10.6-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-    </a>
+   <footer class="main-footer" style="background: #111; padding: 40px 5% 20px; color: #fff; border-top: 1px solid #222;">
+    <div class="footer-container" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: right;">
 
+        <!-- قسم الهوية والأيقونات الملونة -->
+        <div class="footer-brand">
+            <h3 style="color: #8ec045; font-size: 1.1rem; margin-bottom: 15px; font-weight: 800;">{% translate "الهير الشرقية" %}</h3>
+            <p style="font-size: 0.85rem; color: #999; line-height: 1.6; margin-bottom: 15px;">
+                {% translate "نؤمن بأن الحديقة هي روح المكان، نسخر خبراتنا لتنسيق مساحات خضراء تفيض بالجمال." %}
+            </p>
+
+            <!-- 🎨 أيقونات السوشيال ميديا الملونة (SVG مضمونة الظهور) -->
+            <div class="social-icons" style="display: flex; gap: 15px;">
+                <!-- إنستغرام -->
+                <a href="#" style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                    <svg viewBox="0 0 448 512" width="20" height="20" fill="#E1306C"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                </a>
+                <!-- فيسبوك -->
+                <a href="#" style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                    <svg viewBox="0 0 320 512" width="18" height="18" fill="#1877F2"><path d="M279.1 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.4 0 225.4 0c-73.22 0-121.1 44.38-121.1 124.7v70.62H22.89V288h81.39v224h100.2V288z"/></svg>
+                </a>
+                <!-- إكس -->
+                <a href="#" style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                    <svg viewBox="0 0 512 512" width="18" height="18" fill="#ffffff"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- قسم روابط سريعة -->
+        <div class="footer-section">
+            <h3 style="color: #8ec045; font-size: 1.1rem; margin-bottom: 15px; font-weight: 800;">{% translate "روابط سريعة" %}</h3>
+            <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: #999;">
+                <li style="margin-bottom: 8px;"><a href="{% url 'home' %}" style="text-decoration: none; color: #999;">{% translate "الرئيسية" %}</a></li>
+                <li><a href="{% url 'services' %}" style="text-decoration: none; color: #999;">{% translate "خدماتنا" %}</a></li>
+            </ul>
+        </div>
+
+        <!-- قسم تواصل معنا -->
+        <div class="footer-section">
+            <h3 style="color: #8ec045; font-size: 1.1rem; margin-bottom: 15px; font-weight: 800;">{% translate "تواصل معنا" %}</h3>
+            <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: #999;">
+                <li style="margin-bottom: 8px;">📍 {% translate "ابوظبي، الإمارات العربية المتحدة" %}</li>
+                <li dir="ltr" style="margin-bottom: 8px;">📞 +971 XX XXX XXXX</li>
+                <li>✉️ info@alhayereastern.com</li>
+            </ul>
+        </div>
+    </div>
+    <div style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #222; text-align: center; font-size: 0.75rem; color: #555;">
+        © 2024 {% translate "الهير الشرقية" %}
+    </div>
+</footer>
     <script>
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.getElementById('nav-links');
-        mobileMenu.addEventListener('click', () => { navLinks.classList.toggle('active'); });
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', () => { navLinks.classList.remove('active'); });
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. تفعيل وضع الجافا سكريبت في الـ CSS (لمنع الصفحة البيضاء)
+    document.body.classList.add('js-ready');
+
+    const menuBtn = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    // --- 🟢 أولاً: سقوط العنوان الرئيسي (H1) ---
+    const h1 = document.querySelector('h1');
+    if (h1) {
+        setTimeout(() => {
+            h1.classList.add('show-title');
+        }, 150);
+    }
+
+    // --- 🟢 ثانياً: تشغيل القائمة الجانبية (Sidebar) ---
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
         });
-    </script>
+    }
+
+    // --- 🟢 ثالثاً: تشغيل بطاقات المشاريع (واحاتنا) ---
+    projectCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const overlay = this.querySelector('.project-overlay');
+
+            // إغلاق أي بطاقة أخرى مفتوحة
+            projectCards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('active-mobile');
+                    if(c.querySelector('.project-overlay'))
+                        c.querySelector('.project-overlay').classList.remove('expand-mobile');
+                }
+            });
+
+            // تبديل حالة البطاقة الحالية
+            this.classList.toggle('active-mobile');
+            if(overlay) overlay.classList.toggle('expand-mobile');
+        });
+    });
+
+    // --- 🟢 رابعاً: مراقب الظهور (العداد والظهور الناعم) ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-active');
+                // إذا وصل القسم لقسم الإحصائيات، ابدأ العداد
+                if(entry.target.classList.contains('stats-section')) {
+                    startCounters();
+                }
+            }
+        });
+    }, { threshold: 0.15 });
+
+    // ربط المراقب بالأقسام والبطاقات
+   document.querySelectorAll('section, .news-card, .service-card, .stat-item').forEach(el => {
+    observer.observe(el);
+});
+
+    // --- 🟢 خامساً: وظيفة عداد الأرقام ---
+    function startCounters() {
+        document.querySelectorAll('.counter-num').forEach(counter => {
+            if (counter.classList.contains('counted')) return;
+            const target = +counter.getAttribute('data-target');
+            let count = 0;
+            const speed = 2000 / target; // الموازنة حسب الرقم
+
+            const update = () => {
+                const inc = target / 50;
+                if (count < target) {
+                    count = Math.ceil(count + inc);
+                    counter.innerText = count + "+";
+                    setTimeout(update, 30);
+                } else {
+                    counter.innerText = target + "+";
+                }
+            };
+            update();
+            counter.classList.add('counted');
+        });
+    }
+
+    // --- 🟢 سادساً: إغلاق كل شيء عند الضغط في مكان فارغ ---
+    document.addEventListener('click', function(e) {
+        if (navLinks && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        projectCards.forEach(c => {
+            c.classList.remove('active-mobile');
+            if(c.querySelector('.project-overlay'))
+                c.querySelector('.project-overlay').classList.remove('expand-mobile');
+        });
+    });
+});
+</script>
+
+
+<!-- زر واتساب العائم -->
+<!-- زر واتساب العائم (نسخة SVG المضمونة) -->
+<!-- زر واتساب العائم - موجه لرقمك مباشرة -->
+<a href="https://wa.me/971544508711" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 448 512" width="32" height="32" fill="white">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.6-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.5-11.3 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.3 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.3 5.7 23.6 9.2 31.7 11.7 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+</a>
+
+
+
 </body>
 </html>

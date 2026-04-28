@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% translate "واحاتنا | معرض مشاريعنا الخضراء" %}{% endblock %}
+
+{% block content %}
+<div class="gallery-wrapper">
+    <!-- 🖼️ رأس الصفحة -->
+    <header class="gallery-header" style="padding: 80px 5%; text-align: center; background: #fdfdfd;">
+        <h1 style="color: var(--p-green); font-weight: 900;">{% translate "واحاتنا" %}</h1>
+        <p style="max-width: 700px; margin: 15px auto; color: #666; font-weight: 600;">
+            {% translate "شاهد كيف حولنا المساحات الخالية إلى جنات خضراء تفيض بالحياة." %}
+        </p>
+    </header>
+
+    <!-- 📸 شبكة الصور التسويقية -->
+<div class="projects-grid">
+    {% for project in projects %}
+    <div class="project-card">
+        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        <div class="project-overlay">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+</div>
+
+<style>
+    /* تأثيرات الصور التسويقية */
+    .project-card:hover img {
+        transform: scale(1.1);
+    }
+    .project-card:hover .project-overlay {
+        background: linear-gradient(transparent, var(--p-green));
+    }
+    @media (max-width: 768px) {
+        .project-card { height: 350px !important; }
+    }
+</style>
+{% endblock %}

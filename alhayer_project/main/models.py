@@ -23,3 +23,16 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"رسالة من {self.name}"
+
+class Project(models.Model):
+    title = models.CharField(max_length=200, verbose_name="عنوان المشروع")
+    description = models.TextField(verbose_name="وصف المشروع")
+    image = models.ImageField(upload_to='projects/', verbose_name="صورة المشروع")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "مشروع"
+        verbose_name_plural = "المشاريع"
+
+    def __str__(self):
+        return self.title

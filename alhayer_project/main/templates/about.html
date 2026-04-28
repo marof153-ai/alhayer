@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% translate "من نحن | رؤيتنا وقصتنا - الهير الشرقية" %}{% endblock %}
+
+{% block content %}
+<div class="about-wrapper">
+    <!-- 🌿 1. رأس الصفحة (Hero About) -->
+    <header class="about-header" style="background: linear-gradient(rgba(45, 90, 39, 0.8), rgba(45, 90, 39, 0.9)), url('https://unsplash.com') center/cover; padding: 100px 5%; text-align: center; color: white;">
+        <h1 style="color: white !important; font-size: clamp(2.5rem, 6vw, 4rem);">{% translate "من نحن" %}</h1>
+        <p style="max-width: 800px; margin: 20px auto; font-size: 1.2rem; opacity: 0.9; font-weight: 600;">
+            {% translate "قصة شغف بدأت من أعماق الطبيعة لتصنع لك واحة من الجمال والراحة." %}
+        </p>
+    </header>
+
+    <!-- 🏗️ 2. قصة الشركة (The Story) -->
+    <section style="padding: 80px 10%; display: flex; flex-wrap: wrap; gap: 50px; align-items: center;">
+        <div style="flex: 1; min-width: 300px;">
+            <h2 style="color: var(--p-green); font-weight: 900; margin-bottom: 25px; font-size: 2rem;">{% translate "رؤيتنا وقيمنا" %}</h2>
+            <p style="line-height: 2; color: #555; font-size: 1.1rem; font-weight: 600; text-align: justify;">
+                {% translate "في الهير الشرقية، نحن لا ننسق الحدائق فحسب، بل نصمم تجارب حياة. انطلقنا من مدينة العين برؤية تهدف إلى دمج الأصالة الإماراتية بأحدث تقنيات الزراعة والري المستدام. نحن نؤمن أن كل مساحة خضراء هي رئة جديدة للمكان، ونلتزم بتقديم أعلى معايير الجودة لضمان ديمومة وجمال مزارعكم وحدائقكم." %}
+            </p>
+        </div>
+        <div style="flex: 1; min-width: 300px; border-radius: 30px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1);">
+            <img src="https://unsplash.com" alt="Greenery" style="width: 100%; display: block;">
+        </div>
+    </section>
+
+    <!-- 💎 3. مميزاتنا (Why Us) - نظام البطاقات المطور -->
+    <section style="background: #f8faf7; padding: 80px 5%;">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h2 style="color: var(--p-green); font-weight: 900;">{% translate "لماذا يختارنا العملاء؟" %}</h2>
+        </div>
+        <div class="services-grid" style="max-width: 1200px; margin: 0 auto;">
+
+            <div class="service-card" style="padding: 40px 25px;">
+                <div class="icon-box" style="width:70px; height:70px;"><span style="font-size: 2rem;">🛡️</span></div>
+                <h3 style="font-size: 1.3rem;">{% translate "الخبرة والضمان" %}</h3>
+                <p style="font-size: 0.95rem;">{% translate "نقدم ضمانات حقيقية على كافة أعمال التنفيذ والصيانة." %}</p>
+            </div>
+
+            <div class="service-card" style="padding: 40px 25px;">
+                <div class="icon-box" style="width:70px; height:70px;"><span style="font-size: 2rem;">⚡</span></div>
+                <h3 style="font-size: 1.3rem;">{% translate "سرعة التنفيذ" %}</h3>
+                <p style="font-size: 0.95rem;">{% translate "نلتزم بالجداول الزمنية بدقة متناهية مع الحفاظ على الجودة." %}</p>
+            </div>
+
+            <div class="service-card" style="padding: 40px 25px;">
+                <div class="icon-box" style="width:70px; height:70px;"><span style="font-size: 2rem;">🤝</span></div>
+                <h3 style="font-size: 1.3rem;">{% translate "دعم فني مستمر" %}</h3>
+                <p style="font-size: 0.95rem;">{% translate "فريقنا معك دائماً للاستشارة والمتابعة بعد انتهاء المشروع." %}</p>
+            </div>
+
+        </div>
+    </section>
+</div>
+{% endblock %}
