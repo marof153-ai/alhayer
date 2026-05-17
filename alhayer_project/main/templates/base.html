@@ -236,6 +236,10 @@
         © 2026 {% translate "الهير الشرقية" %}
     </div>
 </footer>
+    <div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background: #222; color: #fff; padding: 15px; text-align: center; z-index: 1000; display: none;">
+    <span>نحن نستخدم ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة على موقعنا.</span>
+    <button id="accept-cookies" style="background: #4CAF50; color: white; border: none; padding: 8px 20px; margin-left: 15px; cursor: pointer; border-radius: 4px;">موافق</button>
+</div>
     <script>
 document.addEventListener("DOMContentLoaded", function() {
     // 1. تفعيل وضع الجافا سكريبت في الـ CSS (لمنع الصفحة البيضاء)
@@ -354,6 +358,44 @@ if (statsSection) statsObserver.observe(statsSection);
         });
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+        // التحقق مما إذا كان المستخدم قد وافق مسبقاً
+        if (!getCookie("user_cookie_consent")) {
+            document.getElementById("cookie-banner").style.display = "block";
+        }
+
+        // عند الضغط على زر موافق
+        document.getElementById("accept-cookies").addEventListener("click", function() {
+            // حفظ الكوكيز لمدة 365 يوم
+            setCookie("user_cookie_consent", "accepted", 365);
+            document.getElementById("cookie-banner").style.display = "none";
+        });
+    });
+
+    // دالة لإنشاء الكوكيز
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+    }
+
+    // دالة لقراءة الكوكيز
+    function getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for(let i=0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
 </script>
 
 
