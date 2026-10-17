@@ -10,14 +10,15 @@ import { PROJECTS } from "@/lib/projects";
 import Header from "@/components/Header";
 
 const TRUST_ICONS = [BadgeCheck, ClipboardList, Leaf, Handshake];
+// توحيد نمط بطاقات الخدمات بالكامل
 const VARIANTS = { 
-  design: "v-dark w", 
-  build: "v-light w", 
-  irrigation: "v-sprout", 
+  design: "v-light w",            // البطاقة الرئيسية البارزة باللون الأخضر الداكن الفاخر
+  build: "v-light w",           // بطاقات فاتحة وموحدة بلون الأوف وايت الهادئ (var(--lawn))
+  irrigation: "v-light", 
   "natural-grass": "v-light", 
-  "artificial-grass": "v-soil", 
-  trees: "v-grass w", 
-  lawns: "v-light w" 
+  "artificial-grass": "v-light", 
+  trees: "v-light w", 
+  lawns: "v-light" 
 };
 
 export default async function Home({ params }) {
@@ -127,12 +128,26 @@ export default async function Home({ params }) {
           <p className="lead">{t.request.lead}</p>
           <div className="req">
             <aside className="side">
-              <h3>{t.request.side.h}</h3>
-              <ol>{t.request.side.list.map((x) => <li key={x}>{x}</li>)}</ol>
-              <p className="or">{t.request.side.or}</p>
-              <a href={`tel:${SITE.phone}`} dir="ltr"><Phone size={18} aria-hidden="true" />{SITE.phone}</a>
-              <a href={wa} target="_blank" rel="noopener noreferrer"><MessageCircle size={18} aria-hidden="true" />WhatsApp</a>
-            </aside>
+  <h3>{t.request.side.h}</h3>
+  
+  <ol>
+    {t.request.side.list.map((item, index) => (
+      <li key={index}>{item}</li>
+    ))}
+  </ol>
+
+  <p className="or">{t.request.side.or}</p>
+
+  <a href={`tel:${SITE.phone}`} dir="ltr">
+    <Phone size={18} aria-hidden="true" />
+    <span>{SITE.phone}</span>
+  </a>
+
+  <a href={wa} target="_blank" rel="noopener noreferrer">
+    <MessageCircle size={18} aria-hidden="true" />
+    <span>WhatsApp</span>
+  </a>
+</aside>
             <RequestForm t={t.form} lang={lang} />
           </div>
         </section>
