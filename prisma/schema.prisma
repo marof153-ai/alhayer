@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  name      String
+  phone     String    @unique
+  email     String?
+  city      String?
+  address   String?
+  notes     String?
+  requests  Request[]
+}
+
+model Request {
+  id         String     @id @default(cuid())
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  status     String     @default("new") // new|contacted|visit|quoted|negotiation|won|lost
+  source     String     @default("website") // website|phone|whatsapp|referral|other
+
+  clientId   String
+  client     Client     @relation(fields: [clientId], references: [id])
+
+  city       String
+  address    String?
+  spaceType  String
+  area       Float?
+  services   String // JSON: ["design","irrigation"]
+  budget     String?
+  timeline   String?
+  hasPlans   Boolean    @default(false)
+  notes      String?
+  extra      String? // JSON مرن
+
+  quoteValue Float?
+  visitAt    DateTime?
+  followUpAt DateTime?
+  lostReason String?
+  closedAt   DateTime?
+  activities Activity[]
+
+  @@index([status])
+  @@index([followUpAt])
+}
+
+model Activity {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  requestId String
+  request   Request  @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  type      String // note|call|visit|status|quote|system
+  text      String
+
+  @@index([requestId])
+}
