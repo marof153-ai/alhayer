@@ -38,28 +38,20 @@ export default async function Home({ params }) {
       <main id="top">
         {/* قسم البداية (Hero) */}
         <section className="hero">
-          <div className="wrap hero-in">
-            <div className="hero-text">
-              <h1>
-                {t.hero.h1[0]}<br />
-                <span className="highlight-text">{t.hero.h1[1]}</span>
-              </h1>
-              <p>{t.hero.p}</p>
-              <div className="hero-cta">
-                <a className="btn" href="#request">
-                  <span>{t.hero.cta1}</span>
-                  <ArrowIcon size={18} aria-hidden="true" />
-                </a>
-                <a className="btn btn-ghost" href={wa} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle size={18} aria-hidden="true" />
-                  <span>{t.hero.cta2}</span>
-                </a>
-              </div>
-            </div>
-            <HeroArt />
-          </div>
-          <Blades color="#2F7D2B" base="#2F7D2B" />
-        </section>
+  <div className="wrap hero-in hero-centered">
+    <div className="hero-text">
+      <h1>
+        {t.hero.h1[0]}<br />
+        <span className="highlight">{t.hero.h1[1]}</span>
+      </h1>
+      <p>{t.hero.p}</p>
+      <div className="hero-cta">
+        <a className="btn" href="#request">{t.hero.cta1}</a>
+        <a className="btn btn-ghost" href={wa} target="_blank" rel="noopener noreferrer">{t.hero.cta2}</a>
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* مميزات الثقة */}
         <section className="trust wrap">
