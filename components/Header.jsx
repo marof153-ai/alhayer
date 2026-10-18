@@ -14,9 +14,13 @@ export default function Header({ t }) {
     <header className="nav">
       <div className="wrap nav-in">
         <a className="logo" href="#top" onClick={closeMenu}>
-          <Leaf size={22} aria-hidden="true" />
-          <span>{t.name}</span>
-        </a>
+  <img 
+    src="https://res.cloudinary.com/diivuvc0h/image/upload/v1792297288/logo_ekw5ep.png" 
+    alt={t.name} 
+    style={{ height: "36px", width: "auto", objectFit: "contain" }} 
+  />
+  <span>{t.name}</span>
+</a>
 
         {/* زر القائمة للهواتف */}
         <button 

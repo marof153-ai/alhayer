@@ -158,9 +158,16 @@ export default async function Home({ params }) {
 
       <footer className="foot">
   <div className="wrap foot-in">
-    {/* الهوية والتعريف */}
+    {/* الهوية والتعريف مع الشعار السحابي */}
     <div className="foot-brand">
-      <strong>{t.footer?.aboutTitle || t.name}</strong>
+      <div className="foot-logo-title" style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
+        <img 
+          src="https://res.cloudinary.com/diivuvc0h/image/upload/v1792297288/logo_ekw5ep.png" 
+          alt={t.name} 
+          style={{ height: "40px", width: "auto", objectFit: "contain" }} 
+        />
+        <strong>{t.footer?.aboutTitle || t.name}</strong>
+      </div>
       <p>{t.tagline}</p>
       <div className="social-links">
         <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
