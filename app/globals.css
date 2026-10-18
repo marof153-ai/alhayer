@@ -923,17 +923,21 @@ details p {
    9. Footer & Floating WhatsApp Button (FAB)
    ========================================================= */
 .foot {
-  background: var(--soil);
+  /* خلفية سوداء شفافة ملكية مع تأثير زجاجي فاخر متناسق مع هوية الموقع */
+  background: rgba(12, 18, 14, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(181, 224, 72, 0.15); /* خط سفلي رفيع مميز بلون النبتة */
   color: #e9dfd2;
-  padding: 56px 0;
+  padding: 64px 0;
 }
 
 .foot-in {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px 40px;
+  gap: 30px 40px;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .foot strong {
@@ -941,12 +945,14 @@ details p {
   font-family: var(--fd);
   font-size: 1.6rem;
   color: var(--sprout);
+  margin-bottom: 8px;
 }
 
 .foot span {
   opacity: 0.75;
 }
 
+/* زر الواتساب العائم كما هو بخصائصه */
 .fab {
   position: fixed;
   inset-block-end: 22px;
@@ -967,7 +973,6 @@ details p {
   transform: scale(1.1);
   box-shadow: 0 14px 36px -6px rgba(37, 211, 102, 0.6);
 }
-
 /* =========================================================
    10. Projects Section
    ========================================================= */
